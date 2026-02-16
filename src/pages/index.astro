@@ -42,52 +42,101 @@ import page31 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-m
 import page32 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-32.png";
 
 const bookPages = [
-	page01.src, page02.src, page03.src, page04.src, page05.src, page06.src,
-	page07.src, page08.src, page09.src, page10.src, page11.src, page12.src,
-	page13.src, page14.src, page15.src, page16.src, page17.src, page18.src,
-	page19.src, page20.src, page21.src, page22.src, page23.src, page24.src,
-	page25.src, page26.src, page27.src, page28.src, page29.src, page30.src,
-	page31.src, page32.src,
+	page01.src,
+	page02.src,
+	page03.src,
+	page04.src,
+	page05.src,
+	page06.src,
+	page07.src,
+	page08.src,
+	page09.src,
+	page10.src,
+	page11.src,
+	page12.src,
+	page13.src,
+	page14.src,
+	page15.src,
+	page16.src,
+	page17.src,
+	page18.src,
+	page19.src,
+	page20.src,
+	page21.src,
+	page22.src,
+	page23.src,
+	page24.src,
+	page25.src,
+	page26.src,
+	page27.src,
+	page28.src,
+	page29.src,
+	page30.src,
+	page31.src,
+	page32.src,
 ];
 
 const lawyerActions = [
 	{
 		title: "Learn the science and history.",
-		description: "To fulfill their duty of competence, lawyers should stay up-to-date on climate risks, and understand the fossil fuel industry's history of deception.",
+		description:
+			"To fulfill their duty of competence, lawyers should stay up-to-date on climate risks, and understand the fossil fuel industry's history of deception.",
 	},
 	{
 		title: "Expand ethics rules.",
-		description: "Expand and enforce professional codes to explicitly prohibit misleading courts or the public about climate science.",
+		description:
+			"Expand and enforce professional codes to explicitly prohibit misleading courts or the public about climate science.",
 	},
 	{
 		title: "Disclose fossil fuel work.",
-		description: "Require law firms to publicly report which oil and gas companies they represent and lobby for.",
+		description:
+			"Require law firms to publicly report which oil and gas companies they represent and lobby for.",
 	},
 	{
 		title: "Stop rewarding harmful work.",
-		description: "Reform legal awards and rankings to stop celebrating lawyers destroying the planet.",
+		description:
+			"Reform legal awards and rankings to stop celebrating lawyers destroying the planet.",
 	},
 	{
 		title: "Give clients transparency.",
-		description: "Create tools showing law firms' Scope 3 emissions, so clients can choose representation aligned with their values.",
+		description:
+			"Create tools showing law firms' Scope 3 emissions, so clients can choose representation aligned with their values.",
 	},
 	{
 		title: "Embed climate in firm decision-making.",
-		description: "Make environmental and human rights considerations central to hiring, partnerships, career development, and firm governance.",
+		description:
+			"Make environmental and human rights considerations central to hiring, partnerships, career development, and firm governance.",
 	},
 	{
 		title: "Refuse fossil fuel work.",
-		description: "Doing so on a 'climate-related protected belief' means you are unlikely to face regulatory action.",
+		description:
+			"Doing so on a 'climate-related protected belief' means you are unlikely to face regulatory action.",
 	},
 ];
 ---
 
 <Layout>
+	<!-- Snow Effect -->
+	<canvas id="snow-canvas" class="snow-canvas"></canvas>
+
 	<!-- Header -->
-	<header class="fixed top-0 left-0 right-0 z-50 transition-colors duration-300" id="site-header">
+	<header
+		class="fixed top-0 left-0 right-0 z-50 transition-colors duration-300"
+		id="site-header"
+	>
 		<div class="max-w-6xl mx-auto px-6 py-5 flex items-center">
-			<a href="https://seriouspeople.co" target="_blank" rel="noopener noreferrer">
-				<Image src={iconLogo} alt="Serious People" width={40} height={40} class="block" />
+			<a
+				href="https://seriouspeople.co"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				<Image
+					src={iconLogo}
+					alt="Serious People"
+					width={40}
+					height={40}
+					class="block"
+				/>
 			</a>
 		</div>
 	</header>
@@ -104,15 +153,17 @@ const lawyerActions = [
 				<Image
 					src={bookCover}
 					alt="Why Daddy's Law Firm Works with the Nice Oil Men"
-					width={420}
 					class="hero-cover-img"
 					loading="eager"
+					quality="high"
 				/>
 			</div>
 
 			<div class="hero-text">
 				<p class="hero-blurb">
-					On a chilly winter night, a little penguin dared to wonder: if daddy loves me, why does his law firm facilitate fossil fuel expansion?
+					On a chilly winter night, a little penguin dared to wonder:
+					if daddy loves me, why does his law firm facilitate fossil
+					fuel expansion?
 				</p>
 			</div>
 
@@ -134,32 +185,44 @@ const lawyerActions = [
 		<div class="section-seven-content">
 			<div class="seven-header">
 				<span class="seven-number">7</span>
-				<h2 class="seven-title">Things<br/>Lawyers<br/>Can Do...</h2>
+				<h2 class="seven-title">Things<br />Lawyers<br />Can Do...</h2>
 			</div>
 
 			<div class="seven-grid">
-				{lawyerActions.map((action, index) => (
-					<div class="seven-item">
-						<span class="seven-item-number">{index + 1}</span>
-						<h3 class="seven-item-title">{action.title}</h3>
-						<p class="seven-item-desc">{action.description}</p>
-					</div>
-				))}
+				{
+					lawyerActions.map((action, index) => (
+						<div class="seven-item">
+							<span class="seven-item-number">{index + 1}</span>
+							<h3 class="seven-item-title">{action.title}</h3>
+							<p class="seven-item-desc">{action.description}</p>
+						</div>
+					))
+				}
 			</div>
 
 			<div class="did-you-know">
 				<h3>Did You Know?</h3>
 				<p>
-					In 2024, the International Court of Justice ruled that countries have a legal duty to protect the climate and prevent harm to future generations, including fossil fuel expansion.
+					In 2024, the International Court of Justice ruled that
+					countries have a legal duty to protect the climate and
+					prevent harm to future generations, including fossil fuel
+					expansion.
 				</p>
 				<p>
-					Between 2020 and 2024, London law firms facilitated <strong>$59.84 billion</strong> in fossil fuel transactions.
+					Between 2020 and 2024, London law firms facilitated <strong
+						>$59.84 billion</strong
+					> in fossil fuel transactions.
 				</p>
 				<p>
-					The world already has enough approved fossil fuel projects to push past 1.5°C of warming. The communities that contributed least to emissions will be hit first and hardest. Not including penguins, who didn't emit anything at all.
+					The world already has enough approved fossil fuel projects
+					to push past 1.5°C of warming. The communities that
+					contributed least to emissions will be hit first and
+					hardest. Not including penguins, who didn't emit anything at
+					all.
 				</p>
 				<p class="did-you-know-source">
-					Source: The 2025 Law Firm Climate Change Scorecard by Law Students for Climate Accountability (LSCA)
+					Source: The 2025 Law Firm Climate Change Scorecard by Law
+					Students for Climate Accountability (LSCA)
 				</p>
 			</div>
 		</div>
@@ -168,15 +231,35 @@ const lawyerActions = [
 	<!-- Footer -->
 	<footer class="site-footer">
 		<p>
-			Made by <a href="https://seriouspeople.co" target="_blank" rel="noopener noreferrer">Serious People</a>
+			Made by <a
+				href="https://seriouspeople.co"
+				target="_blank"
+				rel="noopener noreferrer">Serious People</a
+			>
 		</p>
 		<p>
-			Illustration by <a href="https://ellenmcgahey.com" target="_blank" rel="noopener noreferrer">Ellen McGahey</a>
+			Illustration by <a
+				href="https://ellenmcgahey.com"
+				target="_blank"
+				rel="noopener noreferrer">Ellen McGahey</a
+			>
 		</p>
 	</footer>
 </Layout>
 
 <style>
+	/* ---- Snow Effect ---- */
+	.snow-canvas {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+		z-index: 9999;
+		opacity: 0.6;
+	}
+
 	/* ---- Hero ---- */
 	.hero {
 		position: relative;
@@ -206,13 +289,22 @@ const lawyerActions = [
 	}
 
 	.hero-quote {
-		margin-bottom: 2.5rem;
-		min-height: 4rem;
+		margin-bottom: 3rem;
+		min-height: 8rem;
+		display: flex;
+		align-items: flex-start;
+		justify-content: center;
+	}
+
+	@media (min-width: 768px) {
+		.hero-quote {
+			min-height: 9rem;
+		}
 	}
 
 	.hero-cover {
-		margin: 0 auto 2.5rem;
-		max-width: 340px;
+		margin: 0 auto 2rem;
+		max-width: 320px;
 	}
 
 	.hero-cover-img {
@@ -223,14 +315,14 @@ const lawyerActions = [
 	}
 
 	.hero-text {
-		margin-bottom: 2rem;
+		margin-bottom: 2.5rem;
 	}
 
 	.hero-blurb {
-		font-size: 1.15rem;
+		font-size: 1rem;
 		line-height: 1.6;
-		color: white;
-		max-width: 480px;
+		color: rgba(255, 255, 255, 0.9);
+		max-width: 420px;
 		margin: 0 auto;
 	}
 
@@ -341,6 +433,10 @@ const lawyerActions = [
 		}
 	}
 
+	.seven-item {
+		/* No animations */
+	}
+
 	.seven-item-number {
 		font-size: 3rem;
 		line-height: 1;
@@ -414,11 +510,11 @@ const lawyerActions = [
 	/* ---- Responsive ---- */
 	@media (min-width: 768px) {
 		.hero-cover {
-			max-width: 420px;
+			max-width: 380px;
 		}
 
 		.hero-blurb {
-			font-size: 1.3rem;
+			font-size: 1.15rem;
 		}
 
 		.seven-number {
@@ -430,3 +526,70 @@ const lawyerActions = [
 		}
 	}
 </style>
+
+<script>
+	// Cute snow effect
+	if (typeof window !== "undefined") {
+		document.addEventListener("DOMContentLoaded", () => {
+			const canvas = document.getElementById(
+				"snow-canvas",
+			) as HTMLCanvasElement;
+			if (!canvas) return;
+
+			const ctx = canvas.getContext("2d");
+			if (!ctx) return;
+
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight;
+
+			const snowflakes: Array<{
+				x: number;
+				y: number;
+				radius: number;
+				speed: number;
+				drift: number;
+			}> = [];
+			const maxSnowflakes = 50;
+
+			// Create snowflakes
+			for (let i = 0; i < maxSnowflakes; i++) {
+				snowflakes.push({
+					x: Math.random() * canvas.width,
+					y: Math.random() * canvas.height,
+					radius: Math.random() * 2 + 1,
+					speed: Math.random() * 0.5 + 0.3,
+					drift: Math.random() * 0.5 - 0.25,
+				});
+			}
+
+			function animate() {
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+
+				snowflakes.forEach((flake) => {
+					ctx.beginPath();
+					ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+					ctx.fill();
+
+					flake.y += flake.speed;
+					flake.x += flake.drift;
+
+					if (flake.y > canvas.height) {
+						flake.y = -10;
+						flake.x = Math.random() * canvas.width;
+					}
+				});
+
+				requestAnimationFrame(animate);
+			}
+
+			animate();
+
+			// Handle resize
+			window.addEventListener("resize", () => {
+				canvas.width = window.innerWidth;
+				canvas.height = window.innerHeight;
+			});
+		});
+	}
+</script>

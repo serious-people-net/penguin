@@ -34,16 +34,17 @@
     }
 
     function handleKeydown(e: KeyboardEvent) {
-        if (e.key === 'ArrowRight') next();
-        if (e.key === 'ArrowLeft') prev();
+        if (e.key === "ArrowRight") next();
+        if (e.key === "ArrowLeft") prev();
     }
 
     $: isSinglePage = views[currentView]?.length === 1;
 
     // Page number display
     $: pageLabel = (() => {
-        if (currentView === 0) return 'Cover';
-        if (currentView === views.length - 1 && views[currentView].length === 1) return 'Back Cover';
+        if (currentView === 0) return "Cover";
+        if (currentView === views.length - 1 && views[currentView].length === 1)
+            return "Back Cover";
         const startPage = 1 + (currentView - 1) * 2 + 1;
         return `Pages ${startPage}–${startPage + 1}`;
     })();
@@ -53,26 +54,52 @@
 
 <div class="reader">
     <div class="reader-viewport" class:single={isSinglePage}>
-        {#each views[currentView] as page, i (currentView + '-' + i)}
-            <img 
-                src={page} 
-                alt="{pageLabel}" 
+        {#each views[currentView] as page, i}
+            <img
+                src={page}
+                alt={pageLabel}
                 class="reader-page"
-                loading="lazy"
+                loading="eager"
                 decoding="async"
             />
         {/each}
     </div>
 
     <div class="reader-controls">
-        <button on:click={prev} disabled={currentView === 0} aria-label="Previous page">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        <button
+            on:click={prev}
+            disabled={currentView === 0}
+            aria-label="Previous page"
+        >
+            <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"><path d="M15 18l-6-6 6-6" /></svg
+            >
         </button>
 
         <span class="reader-label">{pageLabel}</span>
 
-        <button on:click={next} disabled={currentView >= views.length - 1} aria-label="Next page">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        <button
+            on:click={next}
+            disabled={currentView >= views.length - 1}
+            aria-label="Next page"
+        >
+            <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"><path d="M9 18l6-6-6-6" /></svg
+            >
         </button>
     </div>
 </div>
