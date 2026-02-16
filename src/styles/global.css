@@ -1,1 +1,23 @@
-@import "tailwindcss";
+@import './fonts.css';
+@import 'tailwindcss';
+
+@theme {
+  --font-powell: "powell", sans-serif;
+  
+  --color-penguin-blue: #8ed3e6;
+  --color-penguin-teal: #237f8d;
+  --color-penguin-red: #d94717;
+  --color-penguin-yellow: #ffc529;
+  --color-penguin-grey: #656d70;
+  --color-penguin-offwhite: #ede9e8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-powell);
+  margin: 0;
+  padding: 0;
+}

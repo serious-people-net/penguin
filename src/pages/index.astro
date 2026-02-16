@@ -1,11 +1,275 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import RotatingQuote from "../components/RotatingQuote.svelte";
+import BookCarousel from "../components/BookCarousel.svelte";
+import { Image } from "astro:assets";
+import iconLogo from "../assets/SP-icon-logo.png";
+import bookCover from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-01.png";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Import all book pages
+import page01 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-01.png";
+import page02 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-02.png";
+import page03 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-03.png";
+import page04 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-04.png";
+import page05 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-05.png";
+import page06 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-06.png";
+import page07 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-07.png";
+import page08 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-08.png";
+import page09 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-09.png";
+import page10 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-10.png";
+import page11 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-11.png";
+import page12 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-12.png";
+import page13 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-13.png";
+import page14 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-14.png";
+import page15 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-15.png";
+import page16 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-16.png";
+import page17 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-17.png";
+import page18 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-18.png";
+import page19 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-19.png";
+import page20 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-20.png";
+import page21 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-21.png";
+import page22 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-22.png";
+import page23 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-23.png";
+import page24 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-24.png";
+import page25 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-25.png";
+import page26 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-26.png";
+import page27 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-27.png";
+import page28 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-28.png";
+import page29 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-29.png";
+import page30 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-30.png";
+import page31 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-31.png";
+import page32 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-32.png";
+
+const bookPages = [
+	page01.src,
+	page02.src,
+	page03.src,
+	page04.src,
+	page05.src,
+	page06.src,
+	page07.src,
+	page08.src,
+	page09.src,
+	page10.src,
+	page11.src,
+	page12.src,
+	page13.src,
+	page14.src,
+	page15.src,
+	page16.src,
+	page17.src,
+	page18.src,
+	page19.src,
+	page20.src,
+	page21.src,
+	page22.src,
+	page23.src,
+	page24.src,
+	page25.src,
+	page26.src,
+	page27.src,
+	page28.src,
+	page29.src,
+	page30.src,
+	page31.src,
+	page32.src,
+];
+
+const lawyerActions = [
+	{
+		title: "Learn the science and history",
+		description:
+			"To fulfill their duty of competence, lawyers should stay up-to-date on climate risks, and understand the fossil fuel industry's history of deception.",
+	},
+	{
+		title: "Expand ethics rules",
+		description:
+			"Expand and enforce professional codes to explicitly prohibit misleading courts or the public about climate science.",
+	},
+	{
+		title: "Disclose fossil fuel work",
+		description:
+			"Require law firms to publicly report which oil and gas companies they represent and lobby for.",
+	},
+	{
+		title: "Stop rewarding harmful work",
+		description:
+			"Reform legal awards and rankings to stop celebrating lawyers destroying the planet.",
+	},
+	{
+		title: "Give clients transparency",
+		description:
+			"Create tools showing law firms' Scope 3 emissions, so clients can choose representation aligned with their values.",
+	},
+	{
+		title: "Embed climate in firm decision-making",
+		description:
+			"Make environmental and human rights considerations central to hiring, partnerships, career development, and firm governance.",
+	},
+	{
+		title: "Refuse fossil fuel work",
+		description:
+			"Doing so on a 'climate-related protected belief' means you are unlikely to face regulatory action.",
+	},
+];
 ---
 
 <Layout>
-	<Welcome />
+	<!-- Header -->
+	<header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+		<div
+			class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center"
+		>
+			<h1 class="text-xl md:text-2xl font-normal">
+				Why Daddy's Law Firm Works with the Nice Oil Men
+			</h1>
+			<a
+				href="https://seriouspeople.co"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				<Image
+					src={iconLogo}
+					alt="Serious People"
+					class="h-12 w-auto"
+				/>
+			</a>
+		</div>
+	</header>
+
+	<!-- Spacer for fixed header -->
+	<div class="h-20"></div>
+
+	<!-- Hero Section -->
+	<section class="bg-white py-16 md:py-24 px-4">
+		<div class="max-w-4xl mx-auto text-center">
+			<RotatingQuote client:load />
+
+			<div class="my-12 max-w-md mx-auto">
+				<Image
+					src={bookCover}
+					alt="Why Daddy's Law Firm Works with the Nice Oil Men - Book Cover"
+					class="w-full h-auto shadow-2xl"
+				/>
+			</div>
+
+			<div class="max-w-2xl mx-auto mb-8">
+				<p class="text-lg md:text-xl mb-6 text-gray-800">
+					On a chilly winter night, a little penguin dared to wonder:
+					if daddy loves me, why does his law firm facilitate fossil
+					fuel expansion?
+				</p>
+				<p class="text-base md:text-lg text-gray-700">
+					An instant modern classic, suitable for all ages. Beautiful
+					illustrated penguins on every page offers instant
+					child-appeal, but it is its universal message that gives it
+					its lasting value.
+				</p>
+			</div>
+
+			<div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+				<a
+					href="#read"
+					class="px-8 py-4 bg-[#8ED3E6] text-white text-lg rounded hover:bg-[#7ac2d5] transition-colors"
+				>
+					Read the Book
+				</a>
+				<a
+					href="#learn-more"
+					class="px-8 py-4 bg-[#237F8D] text-white text-lg rounded hover:bg-[#1a6070] transition-colors"
+				>
+					Learn More
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- Book Carousel Section -->
+	<section id="read" class="bg-[#EDE9E8] py-16 md:py-24">
+		<div class="max-w-7xl mx-auto">
+			<h2 class="text-3xl md:text-4xl text-center mb-12 text-gray-800">
+				Read the Book
+			</h2>
+			<BookCarousel bookPages={bookPages} client:load />
+		</div>
+	</section>
+
+	<!-- 7 Things Lawyers Can Do Section -->
+	<section id="learn-more" class="relative py-16 md:py-24 text-white">
+		<div class="absolute inset-0 bg-[#237F8D] z-0"></div>
+
+		<div class="relative z-10 max-w-4xl mx-auto px-4">
+			<h2 class="text-3xl md:text-4xl text-center mb-16">
+				Not convinced? Here's 7 things lawyers can do
+			</h2>
+
+			<div class="space-y-12">
+				{
+					lawyerActions.map((action, index) => (
+						<div class="border-l-4 border-white pl-6 py-4">
+							<h3 class="text-2xl md:text-3xl font-normal mb-4">
+								{index + 1}. {action.title}
+							</h3>
+							<p class="text-lg md:text-xl opacity-90">
+								{action.description}
+							</p>
+						</div>
+					))
+				}
+			</div>
+
+			<div class="mt-16 p-6 bg-white/10 rounded">
+				<h3 class="text-xl md:text-2xl mb-4">Did You Know?</h3>
+				<p class="text-base md:text-lg opacity-90 mb-4">
+					In 2024, the International Court of Justice ruled that
+					countries have a legal duty to protect the climate and
+					prevent harm to future generations, including fossil fuel
+					expansion. This includes regulating the private sector.
+				</p>
+				<p class="text-base md:text-lg opacity-90 mb-4">
+					Between 2020 and 2024, London law firms facilitated $59.84
+					billion in fossil fuel transactions.
+				</p>
+				<p class="text-base md:text-lg opacity-90">
+					The world already has enough approved fossil fuel projects
+					to push past 1.5°C of warming. The communities that
+					contributed least to emissions will be hit first and
+					hardest. Not including penguins, who didn't emit anything at
+					all.
+				</p>
+				<p class="text-sm mt-4 opacity-75">
+					Source: The 2025 Law Firm Climate Change Scorecard by Law
+					Students for Climate Accountability (LSCA)
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer class="bg-[#656D70] text-white py-8 px-4">
+		<div class="max-w-4xl mx-auto text-center">
+			<p class="text-lg mb-2">
+				Made by <a
+					href="https://seriouspeople.co"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="underline hover:text-[#8ED3E6]">Serious People</a
+				>
+			</p>
+			<p class="text-lg">
+				Illustration by <a
+					href="https://ellenmcgahey.com"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="underline hover:text-[#8ED3E6]">Ellen McGahey</a
+				>
+			</p>
+		</div>
+	</footer>
 </Layout>
+
+<style>
+	html {
+		scroll-behavior: smooth;
+	}
+</style>
