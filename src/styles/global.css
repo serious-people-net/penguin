@@ -3,21 +3,30 @@
 
 @theme {
   --font-powell: "powell", sans-serif;
-  
-  --color-penguin-blue: #8ed3e6;
-  --color-penguin-teal: #237f8d;
-  --color-penguin-red: #d94717;
-  --color-penguin-yellow: #ffc529;
-  --color-penguin-grey: #656d70;
-  --color-penguin-offwhite: #ede9e8;
+
+  --color-blue: #8ed3e6;
+  --color-blue-dark: #7ac2d5;
+  --color-teal: #237f8d;
+  --color-teal-dark: #1a6070;
+  --color-red: #d94717;
+  --color-yellow: #ffc529;
+  --color-grey: #656d70;
+  --color-offwhite: #ede9e8;
 }
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-powell);
   margin: 0;
   padding: 0;
+  color: var(--color-grey);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

@@ -5,6 +5,7 @@ import BookCarousel from "../components/BookCarousel.svelte";
 import { Image } from "astro:assets";
 import iconLogo from "../assets/SP-icon-logo.png";
 import bookCover from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-01.png";
+import blueBg from "../assets/illos/plain-blue-background.jpg";
 
 // Import all book pages
 import page01 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-01.png";
@@ -41,235 +42,391 @@ import page31 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-m
 import page32 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-32.png";
 
 const bookPages = [
-	page01.src,
-	page02.src,
-	page03.src,
-	page04.src,
-	page05.src,
-	page06.src,
-	page07.src,
-	page08.src,
-	page09.src,
-	page10.src,
-	page11.src,
-	page12.src,
-	page13.src,
-	page14.src,
-	page15.src,
-	page16.src,
-	page17.src,
-	page18.src,
-	page19.src,
-	page20.src,
-	page21.src,
-	page22.src,
-	page23.src,
-	page24.src,
-	page25.src,
-	page26.src,
-	page27.src,
-	page28.src,
-	page29.src,
-	page30.src,
-	page31.src,
-	page32.src,
+	page01.src, page02.src, page03.src, page04.src, page05.src, page06.src,
+	page07.src, page08.src, page09.src, page10.src, page11.src, page12.src,
+	page13.src, page14.src, page15.src, page16.src, page17.src, page18.src,
+	page19.src, page20.src, page21.src, page22.src, page23.src, page24.src,
+	page25.src, page26.src, page27.src, page28.src, page29.src, page30.src,
+	page31.src, page32.src,
 ];
 
 const lawyerActions = [
 	{
-		title: "Learn the science and history",
-		description:
-			"To fulfill their duty of competence, lawyers should stay up-to-date on climate risks, and understand the fossil fuel industry's history of deception.",
+		title: "Learn the science and history.",
+		description: "To fulfill their duty of competence, lawyers should stay up-to-date on climate risks, and understand the fossil fuel industry's history of deception.",
 	},
 	{
-		title: "Expand ethics rules",
-		description:
-			"Expand and enforce professional codes to explicitly prohibit misleading courts or the public about climate science.",
+		title: "Expand ethics rules.",
+		description: "Expand and enforce professional codes to explicitly prohibit misleading courts or the public about climate science.",
 	},
 	{
-		title: "Disclose fossil fuel work",
-		description:
-			"Require law firms to publicly report which oil and gas companies they represent and lobby for.",
+		title: "Disclose fossil fuel work.",
+		description: "Require law firms to publicly report which oil and gas companies they represent and lobby for.",
 	},
 	{
-		title: "Stop rewarding harmful work",
-		description:
-			"Reform legal awards and rankings to stop celebrating lawyers destroying the planet.",
+		title: "Stop rewarding harmful work.",
+		description: "Reform legal awards and rankings to stop celebrating lawyers destroying the planet.",
 	},
 	{
-		title: "Give clients transparency",
-		description:
-			"Create tools showing law firms' Scope 3 emissions, so clients can choose representation aligned with their values.",
+		title: "Give clients transparency.",
+		description: "Create tools showing law firms' Scope 3 emissions, so clients can choose representation aligned with their values.",
 	},
 	{
-		title: "Embed climate in firm decision-making",
-		description:
-			"Make environmental and human rights considerations central to hiring, partnerships, career development, and firm governance.",
+		title: "Embed climate in firm decision-making.",
+		description: "Make environmental and human rights considerations central to hiring, partnerships, career development, and firm governance.",
 	},
 	{
-		title: "Refuse fossil fuel work",
-		description:
-			"Doing so on a 'climate-related protected belief' means you are unlikely to face regulatory action.",
+		title: "Refuse fossil fuel work.",
+		description: "Doing so on a 'climate-related protected belief' means you are unlikely to face regulatory action.",
 	},
 ];
 ---
 
 <Layout>
 	<!-- Header -->
-	<header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
-		<div
-			class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center"
-		>
-			<h1 class="text-xl md:text-2xl font-normal">
-				Why Daddy's Law Firm Works with the Nice Oil Men
-			</h1>
-			<a
-				href="https://seriouspeople.co"
-				target="_blank"
-				rel="noopener noreferrer"
-			>
-				<Image
-					src={iconLogo}
-					alt="Serious People"
-					class="h-12 w-auto"
-				/>
+	<header class="fixed top-0 left-0 right-0 z-50 transition-colors duration-300" id="site-header">
+		<div class="max-w-6xl mx-auto px-6 py-5 flex items-center">
+			<a href="https://seriouspeople.co" target="_blank" rel="noopener noreferrer">
+				<Image src={iconLogo} alt="Serious People" width={40} height={40} class="block" />
 			</a>
 		</div>
 	</header>
 
-	<!-- Spacer for fixed header -->
-	<div class="h-20"></div>
-
 	<!-- Hero Section -->
-	<section class="bg-white py-16 md:py-24 px-4">
-		<div class="max-w-4xl mx-auto text-center">
-			<RotatingQuote client:load />
+	<section class="hero">
+		<Image src={blueBg} alt="" class="hero-bg" loading="eager" />
+		<div class="hero-content">
+			<div class="hero-quote">
+				<RotatingQuote client:load />
+			</div>
 
-			<div class="my-12 max-w-md mx-auto">
+			<div class="hero-cover">
 				<Image
 					src={bookCover}
-					alt="Why Daddy's Law Firm Works with the Nice Oil Men - Book Cover"
-					class="w-full h-auto shadow-2xl"
+					alt="Why Daddy's Law Firm Works with the Nice Oil Men"
+					width={420}
+					class="hero-cover-img"
+					loading="eager"
 				/>
 			</div>
 
-			<div class="max-w-2xl mx-auto mb-8">
-				<p class="text-lg md:text-xl mb-6 text-gray-800">
-					On a chilly winter night, a little penguin dared to wonder:
-					if daddy loves me, why does his law firm facilitate fossil
-					fuel expansion?
-				</p>
-				<p class="text-base md:text-lg text-gray-700">
-					An instant modern classic, suitable for all ages. Beautiful
-					illustrated penguins on every page offers instant
-					child-appeal, but it is its universal message that gives it
-					its lasting value.
+			<div class="hero-text">
+				<p class="hero-blurb">
+					On a chilly winter night, a little penguin dared to wonder: if daddy loves me, why does his law firm facilitate fossil fuel expansion?
 				</p>
 			</div>
 
-			<div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-				<a
-					href="#read"
-					class="px-8 py-4 bg-[#8ED3E6] text-white text-lg rounded hover:bg-[#7ac2d5] transition-colors"
-				>
-					Read the Book
-				</a>
-				<a
-					href="#learn-more"
-					class="px-8 py-4 bg-[#237F8D] text-white text-lg rounded hover:bg-[#1a6070] transition-colors"
-				>
-					Learn More
-				</a>
+			<div class="hero-actions">
+				<a href="#read" class="btn btn-primary">Read the Book</a>
+				<a href="#learn-more" class="btn btn-secondary">Learn More</a>
 			</div>
 		</div>
 	</section>
 
-	<!-- Book Carousel Section -->
-	<section id="read" class="bg-[#EDE9E8] py-16 md:py-24">
-		<div class="max-w-7xl mx-auto">
-			<h2 class="text-3xl md:text-4xl text-center mb-12 text-gray-800">
-				Read the Book
-			</h2>
-			<BookCarousel bookPages={bookPages} client:load />
-		</div>
+	<!-- Book Reader Section -->
+	<section id="read" class="section-reader">
+		<BookCarousel bookPages={bookPages} client:load />
 	</section>
 
-	<!-- 7 Things Lawyers Can Do Section -->
-	<section id="learn-more" class="relative py-16 md:py-24 text-white">
-		<div class="absolute inset-0 bg-[#237F8D] z-0"></div>
-
-		<div class="relative z-10 max-w-4xl mx-auto px-4">
-			<h2 class="text-3xl md:text-4xl text-center mb-16">
-				Not convinced? Here's 7 things lawyers can do
-			</h2>
-
-			<div class="space-y-12">
-				{
-					lawyerActions.map((action, index) => (
-						<div class="border-l-4 border-white pl-6 py-4">
-							<h3 class="text-2xl md:text-3xl font-normal mb-4">
-								{index + 1}. {action.title}
-							</h3>
-							<p class="text-lg md:text-xl opacity-90">
-								{action.description}
-							</p>
-						</div>
-					))
-				}
+	<!-- 7 Things Lawyers Can Do -->
+	<section id="learn-more" class="section-seven">
+		<Image src={blueBg} alt="" class="section-seven-bg" />
+		<div class="section-seven-content">
+			<div class="seven-header">
+				<span class="seven-number">7</span>
+				<h2 class="seven-title">Things<br/>Lawyers<br/>Can Do...</h2>
 			</div>
 
-			<div class="mt-16 p-6 bg-white/10 rounded">
-				<h3 class="text-xl md:text-2xl mb-4">Did You Know?</h3>
-				<p class="text-base md:text-lg opacity-90 mb-4">
-					In 2024, the International Court of Justice ruled that
-					countries have a legal duty to protect the climate and
-					prevent harm to future generations, including fossil fuel
-					expansion. This includes regulating the private sector.
+			<div class="seven-grid">
+				{lawyerActions.map((action, index) => (
+					<div class="seven-item">
+						<span class="seven-item-number">{index + 1}</span>
+						<h3 class="seven-item-title">{action.title}</h3>
+						<p class="seven-item-desc">{action.description}</p>
+					</div>
+				))}
+			</div>
+
+			<div class="did-you-know">
+				<h3>Did You Know?</h3>
+				<p>
+					In 2024, the International Court of Justice ruled that countries have a legal duty to protect the climate and prevent harm to future generations, including fossil fuel expansion.
 				</p>
-				<p class="text-base md:text-lg opacity-90 mb-4">
-					Between 2020 and 2024, London law firms facilitated $59.84
-					billion in fossil fuel transactions.
+				<p>
+					Between 2020 and 2024, London law firms facilitated <strong>$59.84 billion</strong> in fossil fuel transactions.
 				</p>
-				<p class="text-base md:text-lg opacity-90">
-					The world already has enough approved fossil fuel projects
-					to push past 1.5°C of warming. The communities that
-					contributed least to emissions will be hit first and
-					hardest. Not including penguins, who didn't emit anything at
-					all.
+				<p>
+					The world already has enough approved fossil fuel projects to push past 1.5°C of warming. The communities that contributed least to emissions will be hit first and hardest. Not including penguins, who didn't emit anything at all.
 				</p>
-				<p class="text-sm mt-4 opacity-75">
-					Source: The 2025 Law Firm Climate Change Scorecard by Law
-					Students for Climate Accountability (LSCA)
+				<p class="did-you-know-source">
+					Source: The 2025 Law Firm Climate Change Scorecard by Law Students for Climate Accountability (LSCA)
 				</p>
 			</div>
 		</div>
 	</section>
 
 	<!-- Footer -->
-	<footer class="bg-[#656D70] text-white py-8 px-4">
-		<div class="max-w-4xl mx-auto text-center">
-			<p class="text-lg mb-2">
-				Made by <a
-					href="https://seriouspeople.co"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="underline hover:text-[#8ED3E6]">Serious People</a
-				>
-			</p>
-			<p class="text-lg">
-				Illustration by <a
-					href="https://ellenmcgahey.com"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="underline hover:text-[#8ED3E6]">Ellen McGahey</a
-				>
-			</p>
-		</div>
+	<footer class="site-footer">
+		<p>
+			Made by <a href="https://seriouspeople.co" target="_blank" rel="noopener noreferrer">Serious People</a>
+		</p>
+		<p>
+			Illustration by <a href="https://ellenmcgahey.com" target="_blank" rel="noopener noreferrer">Ellen McGahey</a>
+		</p>
 	</footer>
 </Layout>
 
 <style>
-	html {
-		scroll-behavior: smooth;
+	/* ---- Hero ---- */
+	.hero {
+		position: relative;
+		min-height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+	}
+
+	.hero-bg {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		z-index: 0;
+	}
+
+	.hero-content {
+		position: relative;
+		z-index: 1;
+		text-align: center;
+		padding: 6rem 1.5rem 4rem;
+		max-width: 600px;
+		margin: 0 auto;
+	}
+
+	.hero-quote {
+		margin-bottom: 2.5rem;
+		min-height: 4rem;
+	}
+
+	.hero-cover {
+		margin: 0 auto 2.5rem;
+		max-width: 340px;
+	}
+
+	.hero-cover-img {
+		width: 100%;
+		height: auto;
+		border-radius: 6px;
+		box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+	}
+
+	.hero-text {
+		margin-bottom: 2rem;
+	}
+
+	.hero-blurb {
+		font-size: 1.15rem;
+		line-height: 1.6;
+		color: white;
+		max-width: 480px;
+		margin: 0 auto;
+	}
+
+	.hero-actions {
+		display: flex;
+		gap: 1rem;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	/* ---- Buttons ---- */
+	.btn {
+		display: inline-block;
+		padding: 0.85rem 2rem;
+		font-size: 1.05rem;
+		font-family: "powell", sans-serif;
+		border-radius: 4px;
+		text-decoration: none;
+		transition: all 0.2s ease;
+	}
+
+	.btn-primary {
+		background: white;
+		color: #237f8d;
+	}
+
+	.btn-primary:hover {
+		background: #ede9e8;
+	}
+
+	.btn-secondary {
+		background: transparent;
+		color: white;
+		border: 2px solid white;
+	}
+
+	.btn-secondary:hover {
+		background: rgba(255, 255, 255, 0.15);
+	}
+
+	/* ---- Reader Section ---- */
+	.section-reader {
+		background: #ede9e8;
+		padding: 4rem 0;
+	}
+
+	/* ---- 7 Things Section ---- */
+	.section-seven {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.section-seven-bg {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		z-index: 0;
+	}
+
+	.section-seven-content {
+		position: relative;
+		z-index: 1;
+		max-width: 960px;
+		margin: 0 auto;
+		padding: 5rem 1.5rem;
+		color: white;
+	}
+
+	.seven-header {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.25rem;
+		margin-bottom: 3rem;
+	}
+
+	.seven-number {
+		font-size: 8rem;
+		line-height: 0.8;
+		color: white;
+		opacity: 0.9;
+	}
+
+	.seven-title {
+		font-size: 3rem;
+		line-height: 1.05;
+		font-weight: 400;
+		margin: 0;
+	}
+
+	.seven-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 2.5rem;
+		margin-bottom: 4rem;
+	}
+
+	@media (min-width: 640px) {
+		.seven-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (min-width: 900px) {
+		.seven-grid {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	.seven-item-number {
+		font-size: 3rem;
+		line-height: 1;
+		display: block;
+		margin-bottom: 0.25rem;
+		opacity: 0.7;
+	}
+
+	.seven-item-title {
+		font-size: 1.2rem;
+		font-weight: 400;
+		line-height: 1.3;
+		margin: 0 0 0.5rem;
+	}
+
+	.seven-item-desc {
+		font-size: 0.9rem;
+		line-height: 1.5;
+		opacity: 0.85;
+		margin: 0;
+	}
+
+	/* ---- Did You Know ---- */
+	.did-you-know {
+		border-top: 1px solid rgba(255, 255, 255, 0.3);
+		padding-top: 2.5rem;
+		max-width: 640px;
+	}
+
+	.did-you-know h3 {
+		font-size: 1.5rem;
+		font-weight: 400;
+		margin: 0 0 1rem;
+	}
+
+	.did-you-know p {
+		font-size: 1rem;
+		line-height: 1.6;
+		opacity: 0.9;
+		margin: 0 0 1rem;
+	}
+
+	.did-you-know-source {
+		font-size: 0.85rem !important;
+		opacity: 0.6 !important;
+	}
+
+	/* ---- Footer ---- */
+	.site-footer {
+		background: #ede9e8;
+		padding: 2.5rem 1.5rem;
+		text-align: center;
+		color: #656d70;
+		font-size: 0.95rem;
+	}
+
+	.site-footer p {
+		margin: 0.25rem 0;
+	}
+
+	.site-footer a {
+		color: #237f8d;
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+
+	.site-footer a:hover {
+		color: #1a6070;
+	}
+
+	/* ---- Responsive ---- */
+	@media (min-width: 768px) {
+		.hero-cover {
+			max-width: 420px;
+		}
+
+		.hero-blurb {
+			font-size: 1.3rem;
+		}
+
+		.seven-number {
+			font-size: 10rem;
+		}
+
+		.seven-title {
+			font-size: 3.5rem;
+		}
 	}
 </style>

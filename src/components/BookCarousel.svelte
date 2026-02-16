@@ -3,110 +3,155 @@
 
     export let bookPages: string[] = [];
 
-    let currentPage = 0;
-    let isTransitioning = false;
-
-    // Group pages: first page alone, then pairs, last page alone if odd
-    $: displayPages = (() => {
-        if (currentPage === 0) return [bookPages[0]];
-        if (
-            currentPage === bookPages.length - 1 &&
-            bookPages.length % 2 === 1
-        ) {
-            return [bookPages[currentPage]];
+    // Build views: cover alone, then double spreads, back cover alone
+    // Pages: [0] = cover, [1,2], [3,4], ... [29,30], [31] = back cover
+    $: views = (() => {
+        const v: string[][] = [];
+        if (bookPages.length === 0) return v;
+        // Cover (page 1)
+        v.push([bookPages[0]]);
+        // Double spreads from page 2 onwards
+        for (let i = 1; i < bookPages.length - 1; i += 2) {
+            const spread = [bookPages[i]];
+            if (i + 1 < bookPages.length) spread.push(bookPages[i + 1]);
+            v.push(spread);
         }
-        // Show double spreads
-        const leftPage = currentPage % 2 === 0 ? currentPage : currentPage - 1;
-        return [bookPages[leftPage], bookPages[leftPage + 1]].filter(Boolean);
+        // Back cover if the last page wasn't already included in a spread
+        if (bookPages.length > 1 && bookPages.length % 2 === 0) {
+            v.push([bookPages[bookPages.length - 1]]);
+        }
+        return v;
     })();
 
-    function nextPage() {
-        if (isTransitioning) return;
+    let currentView = 0;
 
-        if (currentPage === 0) {
-            currentPage = 1;
-        } else if (currentPage < bookPages.length - 1) {
-            currentPage += displayPages.length === 2 ? 2 : 1;
-            if (currentPage >= bookPages.length)
-                currentPage = bookPages.length - 1;
-        }
-
-        isTransitioning = true;
-        setTimeout(() => (isTransitioning = false), 300);
+    function next() {
+        if (currentView < views.length - 1) currentView++;
     }
 
-    function prevPage() {
-        if (isTransitioning) return;
-
-        if (currentPage === 1) {
-            currentPage = 0;
-        } else if (currentPage > 0) {
-            currentPage -= 2;
-            if (currentPage < 0) currentPage = 0;
-        }
-
-        isTransitioning = true;
-        setTimeout(() => (isTransitioning = false), 300);
+    function prev() {
+        if (currentView > 0) currentView--;
     }
+
+    function handleKeydown(e: KeyboardEvent) {
+        if (e.key === 'ArrowRight') next();
+        if (e.key === 'ArrowLeft') prev();
+    }
+
+    $: isSinglePage = views[currentView]?.length === 1;
+
+    // Page number display
+    $: pageLabel = (() => {
+        if (currentView === 0) return 'Cover';
+        if (currentView === views.length - 1 && views[currentView].length === 1) return 'Back Cover';
+        const startPage = 1 + (currentView - 1) * 2 + 1;
+        return `Pages ${startPage}–${startPage + 1}`;
+    })();
 </script>
 
-<div class="book-carousel">
-    <div class="carousel-container max-w-6xl mx-auto px-4">
-        <div
-            class="carousel-pages flex justify-center items-center gap-4 mb-8 min-h-100 md:min-h-150"
-        >
-            {#each displayPages as page, index}
-                <div
-                    class="page-image flex-1 max-w-125"
-                    style="transition: opacity 0.3s ease-in-out; opacity: {isTransitioning
-                        ? 0.5
-                        : 1};"
-                >
-                    <img
-                        src={page}
-                        alt="Book page {currentPage + index + 1}"
-                        class="w-full h-auto shadow-lg"
-                    />
-                </div>
-            {/each}
-        </div>
+<svelte:window on:keydown={handleKeydown} />
 
-        <div class="carousel-controls flex justify-center items-center gap-4">
-            <button
-                on:click={prevPage}
-                disabled={currentPage === 0}
-                class="px-6 py-3 bg-[#237F8D] text-white rounded disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#1a6070] transition-colors"
-            >
-                Previous
-            </button>
+<div class="reader">
+    <div class="reader-viewport" class:single={isSinglePage}>
+        {#each views[currentView] as page, i (currentView + '-' + i)}
+            <img 
+                src={page} 
+                alt="{pageLabel}" 
+                class="reader-page"
+                loading="lazy"
+                decoding="async"
+            />
+        {/each}
+    </div>
 
-            <span class="text-gray-600">
-                Page {currentPage + 1} of {bookPages.length}
-            </span>
+    <div class="reader-controls">
+        <button on:click={prev} disabled={currentView === 0} aria-label="Previous page">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
 
-            <button
-                on:click={nextPage}
-                disabled={currentPage >= bookPages.length - 1}
-                class="px-6 py-3 bg-[#237F8D] text-white rounded disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#1a6070] transition-colors"
-            >
-                Next
-            </button>
-        </div>
+        <span class="reader-label">{pageLabel}</span>
+
+        <button on:click={next} disabled={currentView >= views.length - 1} aria-label="Next page">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
     </div>
 </div>
 
 <style>
-    .book-carousel {
-        padding: 3rem 0;
+    .reader {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 1rem;
     }
 
-    .page-image img {
+    .reader-viewport {
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        gap: 0;
+        margin-bottom: 1.5rem;
         border-radius: 4px;
+        overflow: hidden;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        background: white;
+    }
+
+    .reader-viewport.single {
+        max-width: 480px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 1.5rem;
+    }
+
+    .reader-page {
+        display: block;
+        width: 50%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .reader-viewport.single .reader-page {
+        width: 100%;
+    }
+
+    .reader-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .reader-label {
+        font-size: 0.95rem;
+        color: #656d70;
+        min-width: 120px;
+        text-align: center;
     }
 
     button {
         font-family: "powell", sans-serif;
-        font-weight: 400;
-        min-width: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: 2px solid #237f8d;
+        background: transparent;
+        color: #237f8d;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    button:hover:not(:disabled) {
+        background: #237f8d;
+        color: white;
+    }
+
+    button:disabled {
+        opacity: 0.25;
+        cursor: not-allowed;
+        border-color: #656d70;
+        color: #656d70;
     }
 </style>
