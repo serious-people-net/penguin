@@ -29,8 +29,8 @@
 
     // Preload all images with proper loading
     onMount(() => {
-        if (typeof window === 'undefined') return;
-        
+        if (typeof window === "undefined") return;
+
         const promises = bookPages.map((page) => {
             return new Promise<void>((resolve) => {
                 const img = new window.Image();
@@ -39,7 +39,7 @@
                 img.src = page;
             });
         });
-        
+
         Promise.all(promises).then(() => {
             imagesLoaded = true;
         });
@@ -140,12 +140,22 @@
         {#if pdfUrl}
             <div class="reader-download">
                 <a href={pdfUrl} download class="btn-download">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                        ></path>
                         <polyline points="7 10 12 15 17 10"></polyline>
                         <line x1="12" y1="15" x2="12" y2="3"></line>
                     </svg>
-                    Download PDF
+                    Download
                 </a>
             </div>
         {/if}
@@ -176,13 +186,13 @@
         overflow: hidden;
         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
         background: white;
+        max-width: 960px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .reader-viewport.single {
         max-width: 480px;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 2rem;
     }
 
     .reader-page {
