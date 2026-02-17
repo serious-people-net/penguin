@@ -3,43 +3,43 @@ import Layout from "../layouts/Layout.astro";
 import RotatingQuote from "../components/RotatingQuote.svelte";
 import BookCarousel from "../components/BookCarousel.svelte";
 import { Image } from "astro:assets";
-import iconLogo from "../assets/SP-icon-logo.png";
-import bookCover from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-01.png";
+import iconLogo from "../assets/SP-icon-logo-white.png";
+import bookCover from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-01.jpg";
 import blueBg from "../assets/illos/plain-blue-background.jpg";
 
 // Import all book pages
-import page01 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-01.png";
-import page02 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-02.png";
-import page03 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-03.png";
-import page04 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-04.png";
-import page05 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-05.png";
-import page06 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-06.png";
-import page07 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-07.png";
-import page08 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-08.png";
-import page09 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-09.png";
-import page10 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-10.png";
-import page11 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-11.png";
-import page12 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-12.png";
-import page13 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-13.png";
-import page14 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-14.png";
-import page15 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-15.png";
-import page16 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-16.png";
-import page17 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-17.png";
-import page18 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-18.png";
-import page19 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-19.png";
-import page20 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-20.png";
-import page21 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-21.png";
-import page22 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-22.png";
-import page23 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-23.png";
-import page24 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-24.png";
-import page25 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-25.png";
-import page26 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-26.png";
-import page27 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-27.png";
-import page28 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-28.png";
-import page29 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-29.png";
-import page30 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-30.png";
-import page31 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-31.png";
-import page32 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-32.png";
+import page01 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-01.jpg";
+import page02 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-02.jpg";
+import page03 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-03.jpg";
+import page04 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-04.jpg";
+import page05 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-05.jpg";
+import page06 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-06.jpg";
+import page07 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-07.jpg";
+import page08 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-08.jpg";
+import page09 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-09.jpg";
+import page10 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-10.jpg";
+import page11 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-11.jpg";
+import page12 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-12.jpg";
+import page13 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-13.jpg";
+import page14 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-14.jpg";
+import page15 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-15.jpg";
+import page16 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-16.jpg";
+import page17 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-17.jpg";
+import page18 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-18.jpg";
+import page19 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-19.jpg";
+import page20 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-20.jpg";
+import page21 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-21.jpg";
+import page22 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-22.jpg";
+import page23 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-23.jpg";
+import page24 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-24.jpg";
+import page25 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-25.jpg";
+import page26 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-26.jpg";
+import page27 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-27.jpg";
+import page28 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-28.jpg";
+import page29 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-29.jpg";
+import page30 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-30.jpg";
+import page31 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-31.jpg";
+import page32 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-32.jpg";
 
 const bookPages = [
 	page01.src,
@@ -133,9 +133,10 @@ const lawyerActions = [
 				<Image
 					src={iconLogo}
 					alt="Serious People"
-					width={40}
-					height={40}
-					class="block"
+					width={80}
+					height={80}
+					quality="high"
+					class="sp-logo"
 				/>
 			</a>
 		</div>
@@ -176,7 +177,11 @@ const lawyerActions = [
 
 	<!-- Book Reader Section -->
 	<section id="read" class="section-reader">
-		<BookCarousel bookPages={bookPages} client:load />
+		<BookCarousel
+			bookPages={bookPages}
+			pdfUrl="/penguin/why-daddys-law-firm-works-with-the-nice-oil-men-ebook.pdf"
+			client:load
+		/>
 	</section>
 
 	<!-- 7 Things Lawyers Can Do -->
@@ -258,6 +263,12 @@ const lawyerActions = [
 		pointer-events: none;
 		z-index: 9999;
 		opacity: 0.6;
+	}
+
+	/* ---- Header ---- */
+	.sp-logo {
+		width: 40px;
+		height: 40px;
 	}
 
 	/* ---- Hero ---- */
@@ -396,15 +407,16 @@ const lawyerActions = [
 	.seven-header {
 		display: flex;
 		align-items: flex-start;
-		gap: 0.25rem;
+		gap: 1rem;
 		margin-bottom: 3rem;
 	}
 
 	.seven-number {
 		font-size: 8rem;
-		line-height: 0.8;
+		line-height: 0.75;
 		color: white;
 		opacity: 0.9;
+		flex-shrink: 0;
 	}
 
 	.seven-title {
@@ -412,6 +424,7 @@ const lawyerActions = [
 		line-height: 1.05;
 		font-weight: 400;
 		margin: 0;
+		padding-top: 0.25rem;
 	}
 
 	.seven-grid {
@@ -536,8 +549,9 @@ const lawyerActions = [
 			) as HTMLCanvasElement;
 			if (!canvas) return;
 
-			const ctx = canvas.getContext("2d");
-			if (!ctx) return;
+			const ctxOrNull = canvas.getContext("2d");
+			if (!ctxOrNull) return;
+			const ctx: CanvasRenderingContext2D = ctxOrNull;
 
 			canvas.width = window.innerWidth;
 			canvas.height = window.innerHeight;
