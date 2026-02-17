@@ -6,6 +6,7 @@ import { Image } from "astro:assets";
 import iconLogo from "../assets/SP-icon-logo-white.png";
 import bookCover from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-01.jpg";
 import blueBg from "../assets/illos/plain-blue-background.jpg";
+import backInfo from "../assets/illos/back-info.jpg";
 
 // Import all book pages
 import page01 from "../assets/book/why-daddys-law-firm-works-with-the-nice-oil-men-01.jpg";
@@ -184,8 +185,50 @@ const lawyerActions = [
 		/>
 	</section>
 
+	<!-- Did You Know Section -->
+	<section id="learn-more" class="section-did-you-know">
+		<Image src={backInfo} alt="" class="section-did-you-know-bg" />
+		<div class="did-you-know-content">
+			<h2 class="did-you-know-title">Did you know?</h2>
+			<div class="did-you-know-flow">
+				<p class="fact-intro">
+					In 2025, the International Court of Justice ruled that
+					countries have a legal duty to protect the climate and
+					prevent harm to future generations, including fossil fuel
+					expansion. This includes regulating the private sector.
+				</p>
+				<p class="fact-intro">
+					Between 2020 and 2024, London law firms facilitated
+				</p>
+				<p class="fact-big-number">$59.84 billion</p>
+				<p class="fact-caption">in fossil fuel transactions*</p>
+				<p class="fact-intro">
+					The world already has enough approved fossil fuel projects
+					to push past 1.5°C of warming. Each 0.1°C beyond that
+					increases:
+				</p>
+				<p class="fact-emphasis">
+					Deadly heat waves and crop failures.<br />
+					Mass displacement and climate refugees.<br />
+					Wildfires, flooding and storms.
+				</p>
+				<p class="fact-subtext">
+					The communities that contributed least to emissions will be
+					hit first and hardest.
+				</p>
+				<p class="fact-subtext">
+					Including penguins, who didn't emit anything at all.
+				</p>
+			</div>
+			<p class="did-you-know-source">
+				*Source: The 2025 Law Firm Climate Change Scorecard by Law
+				Students for Climate Accountability (LSCA)
+			</p>
+		</div>
+	</section>
+
 	<!-- 7 Things Lawyers Can Do -->
-	<section id="learn-more" class="section-seven">
+	<section class="section-seven">
 		<Image src={blueBg} alt="" class="section-seven-bg" />
 		<div class="section-seven-content">
 			<div class="seven-header">
@@ -204,32 +247,36 @@ const lawyerActions = [
 					))
 				}
 			</div>
+		</div>
+	</section>
 
-			<div class="did-you-know">
-				<h3>Did You Know?</h3>
-				<p>
-					In 2024, the International Court of Justice ruled that
-					countries have a legal duty to protect the climate and
-					prevent harm to future generations, including fossil fuel
-					expansion.
-				</p>
-				<p>
-					Between 2020 and 2024, London law firms facilitated <strong
-						>$59.84 billion</strong
-					> in fossil fuel transactions.
-				</p>
-				<p>
-					The world already has enough approved fossil fuel projects
-					to push past 1.5°C of warming. The communities that
-					contributed least to emissions will be hit first and
-					hardest. Not including penguins, who didn't emit anything at
-					all.
-				</p>
-				<p class="did-you-know-source">
-					Source: The 2025 Law Firm Climate Change Scorecard by Law
-					Students for Climate Accountability (LSCA)
-				</p>
-			</div>
+	<!-- CTA Section -->
+	<section class="section-cta">
+		<div class="cta-content">
+			<h2 class="cta-title">Limited Print Run</h2>
+			<p class="cta-subtitle">Order your free copy today.</p>
+			<form class="cta-form">
+				<div class="cta-form-fields">
+					<input
+						type="text"
+						name="name"
+						placeholder="Your name"
+						required
+						class="cta-input"
+					/>
+					<input
+						type="email"
+						name="email"
+						placeholder="Your email"
+						required
+						class="cta-input"
+					/>
+				</div>
+				<button type="submit" class="btn-cta">Request a Copy</button>
+			</form>
+			<p class="cta-forward">
+				Please forward to the lawyer in your life.
+			</p>
 		</div>
 	</section>
 
@@ -470,42 +517,197 @@ const lawyerActions = [
 	}
 
 	.seven-item-title {
-		font-size: 1.2rem;
+		font-size: 1.35rem;
 		font-weight: 400;
 		line-height: 1.3;
 		margin: 0 0 0.5rem;
 	}
 
 	.seven-item-desc {
-		font-size: 0.9rem;
-		line-height: 1.5;
+		font-size: 1.05rem;
+		line-height: 1.55;
 		opacity: 0.85;
 		margin: 0;
 	}
 
-	/* ---- Did You Know ---- */
-	.did-you-know {
-		border-top: 1px solid rgba(255, 255, 255, 0.3);
-		padding-top: 2.5rem;
-		max-width: 640px;
+	/* ---- Did You Know Section ---- */
+	.section-did-you-know {
+		position: relative;
+		overflow: hidden;
+		padding: 5rem 1.5rem;
 	}
 
-	.did-you-know h3 {
-		font-size: 1.5rem;
+	.section-did-you-know-bg {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		z-index: 0;
+	}
+
+	.did-you-know-content {
+		position: relative;
+		z-index: 1;
+		max-width: 680px;
+		margin: 0 auto;
+	}
+
+	.did-you-know-title {
+		font-size: 2.5rem;
 		font-weight: 400;
-		margin: 0 0 1rem;
+		margin: 0 0 2.5rem;
+		color: var(--color-grey);
+		text-align: center;
 	}
 
-	.did-you-know p {
-		font-size: 1rem;
+	@media (min-width: 768px) {
+		.did-you-know-title {
+			font-size: 3rem;
+			margin-bottom: 3rem;
+		}
+	}
+
+	.did-you-know-flow {
+		text-align: center;
+	}
+
+	.fact-intro {
+		font-size: 1.05rem;
 		line-height: 1.6;
-		opacity: 0.9;
-		margin: 0 0 1rem;
+		color: var(--color-grey);
+		margin: 0 0 1.5rem;
+	}
+
+	.fact-big-number {
+		font-size: 3rem;
+		line-height: 1.1;
+		color: var(--color-grey);
+		margin: 0.5rem 0;
+		font-weight: 400;
+	}
+
+	@media (min-width: 768px) {
+		.fact-big-number {
+			font-size: 3.5rem;
+		}
+	}
+
+	.fact-caption {
+		font-size: 1rem;
+		color: var(--color-grey);
+		margin: 0 0 2rem;
+	}
+
+	.fact-emphasis {
+		font-size: 1.25rem;
+		line-height: 1.55;
+		color: var(--color-grey);
+		margin: 1.5rem 0;
+	}
+
+	.fact-subtext {
+		font-size: 1rem;
+		line-height: 1.5;
+		color: var(--color-grey);
+		margin: 1rem 0 0;
 	}
 
 	.did-you-know-source {
-		font-size: 0.85rem !important;
-		opacity: 0.6 !important;
+		font-size: 0.75rem;
+		opacity: 0.5;
+		margin-top: 3rem;
+		color: var(--color-grey);
+		text-align: center;
+	}
+
+	/* ---- CTA Section ---- */
+	.section-cta {
+		background: #ede9e8;
+		padding: 5rem 1.5rem;
+		text-align: center;
+	}
+
+	.cta-content {
+		max-width: 520px;
+		margin: 0 auto;
+	}
+
+	.cta-title {
+		font-size: 2.5rem;
+		font-weight: 400;
+		margin: 0 0 0.5rem;
+		color: #237f8d;
+	}
+
+	.cta-subtitle {
+		font-size: 1.2rem;
+		color: #656d70;
+		margin: 0 0 2rem;
+	}
+
+	.cta-form {
+		margin-bottom: 2rem;
+	}
+
+	.cta-form-fields {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		margin-bottom: 1rem;
+	}
+
+	@media (min-width: 480px) {
+		.cta-form-fields {
+			flex-direction: row;
+		}
+	}
+
+	.cta-input {
+		flex: 1;
+		padding: 0.85rem 1rem;
+		font-family: "powell", sans-serif;
+		font-size: 1rem;
+		border: 2px solid #8ed3e6;
+		border-radius: 4px;
+		background: white;
+		color: #656d70;
+		outline: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.cta-input:focus {
+		border-color: #237f8d;
+	}
+
+	.cta-input::placeholder {
+		color: #656d70;
+		opacity: 0.5;
+	}
+
+	.btn-cta {
+		display: inline-block;
+		padding: 0.85rem 2.5rem;
+		font-size: 1.05rem;
+		font-family: "powell", sans-serif;
+		border-radius: 4px;
+		border: none;
+		background: #237f8d;
+		color: white;
+		cursor: pointer;
+		transition: background 0.2s ease;
+	}
+
+	.btn-cta:hover {
+		background: #1a6070;
+	}
+
+	.cta-forward {
+		font-size: 1rem;
+		color: #656d70;
+		opacity: 0.7;
+		font-style: italic;
+		margin: 0;
 	}
 
 	/* ---- Footer ---- */
@@ -615,6 +817,19 @@ const lawyerActions = [
 				canvas.width = window.innerWidth;
 				canvas.height = window.innerHeight;
 			});
+
+			// CTA form handling
+			const ctaForm = document.querySelector(".cta-form");
+			if (ctaForm) {
+				ctaForm.addEventListener("submit", (e) => {
+					e.preventDefault();
+					const content = ctaForm.closest(".cta-content");
+					if (content) {
+						content.innerHTML =
+							'<h2 class="cta-title" style="margin-bottom: 1rem;">Thank You</h2><p class="cta-subtitle">We\'ll be in touch.</p><p class="cta-forward">Please forward to the lawyer in your life.</p>';
+					}
+				});
+			}
 		});
 	}
 </script>

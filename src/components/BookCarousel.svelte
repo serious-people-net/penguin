@@ -56,6 +56,7 @@
     function handleKeydown(e: KeyboardEvent) {
         if (e.key === "ArrowRight") next();
         if (e.key === "ArrowLeft") prev();
+        if (e.key === "Escape" && isExpanded) toggleExpand();
     }
 
     $: isSinglePage = views[currentView]?.length === 1;
@@ -68,6 +69,14 @@
         const startPage = 1 + (currentView - 1) * 2 + 1;
         return `Pages ${startPage}–${startPage + 1}`;
     })();
+    let isExpanded = false;
+
+    function toggleExpand() {
+        isExpanded = !isExpanded;
+        if (typeof document !== "undefined") {
+            document.body.style.overflow = isExpanded ? "hidden" : "";
+        }
+    }
 </script>
 
 <svelte:window on:keydown={handleKeydown} />
@@ -79,7 +88,31 @@
     {/each}
 </div>
 
-<div class="reader">
+<div class="reader" class:expanded={isExpanded}>
+    {#if isExpanded}
+        <button
+            class="expand-close"
+            on:click={toggleExpand}
+            aria-label="Exit fullscreen"
+        >
+            <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><line x1="18" y1="6" x2="6" y2="18" /><line
+                    x1="6"
+                    y1="6"
+                    x2="18"
+                    y2="18"
+                /></svg
+            >
+        </button>
+    {/if}
     {#if !imagesLoaded}
         <div class="reader-loading">
             <p>Loading book...</p>
@@ -135,6 +168,52 @@
                     stroke-linejoin="round"><path d="M9 18l6-6-6-6" /></svg
                 >
             </button>
+
+            <button
+                on:click={toggleExpand}
+                class="expand-btn"
+                aria-label={isExpanded ? "Exit fullscreen" : "View fullscreen"}
+            >
+                {#if isExpanded}
+                    <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        ><polyline points="4 14 10 14 10 20" /><polyline
+                            points="20 10 14 10 14 4"
+                        /><line x1="14" y1="10" x2="21" y2="3" /><line
+                            x1="3"
+                            y1="21"
+                            x2="10"
+                            y2="14"
+                        /></svg
+                    >
+                {:else}
+                    <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        ><polyline points="15 3 21 3 21 9" /><polyline
+                            points="9 21 3 21 3 15"
+                        /><line x1="21" y1="3" x2="14" y2="10" /><line
+                            x1="3"
+                            y1="21"
+                            x2="10"
+                            y2="14"
+                        /></svg
+                    >
+                {/if}
+            </button>
         </div>
 
         {#if pdfUrl}
@@ -164,9 +243,22 @@
 
 <style>
     .reader {
-        max-width: 960px;
+        max-width: 1200px;
         margin: 0 auto;
         padding: 3rem 1rem;
+    }
+
+    .reader.expanded {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        max-width: none;
+        background: rgba(0, 0, 0, 0.95);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
     }
 
     .reader-loading {
@@ -186,13 +278,36 @@
         overflow: hidden;
         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
         background: white;
-        max-width: 960px;
+        max-width: 1200px;
         margin-left: auto;
         margin-right: auto;
     }
 
     .reader-viewport.single {
-        max-width: 480px;
+        max-width: 600px;
+    }
+
+    .expanded .reader-viewport {
+        max-width: 95vw;
+        max-height: 85vh;
+        box-shadow: none;
+        border-radius: 0;
+        background: transparent;
+    }
+
+    .expanded .reader-viewport.single {
+        max-width: 50vw;
+    }
+
+    .expanded .reader-page {
+        max-height: 85vh;
+        width: auto;
+        object-fit: contain;
+    }
+
+    .expanded .reader-viewport.single .reader-page {
+        width: auto;
+        max-height: 85vh;
     }
 
     .reader-page {
@@ -245,6 +360,62 @@
         cursor: not-allowed;
         border-color: #656d70;
         color: #656d70;
+    }
+
+    .expand-btn {
+        margin-left: 1rem;
+    }
+
+    .expand-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        background: transparent;
+        color: rgba(255, 255, 255, 0.7);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10001;
+        transition: all 0.2s ease;
+    }
+
+    .expand-close:hover {
+        border-color: white;
+        color: white;
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .expanded .reader-controls button {
+        border-color: rgba(255, 255, 255, 0.5);
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .expanded .reader-controls button:hover:not(:disabled) {
+        background: rgba(255, 255, 255, 0.15);
+        color: white;
+        border-color: white;
+    }
+
+    .expanded .reader-controls button:disabled {
+        border-color: rgba(255, 255, 255, 0.15);
+        color: rgba(255, 255, 255, 0.2);
+    }
+
+    .expanded .reader-label {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .expanded .reader-download .btn-download {
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    .expanded .reader-download .btn-download:hover {
+        background: rgba(255, 255, 255, 0.25);
     }
 
     .reader-download {
