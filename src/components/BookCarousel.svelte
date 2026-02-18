@@ -6,9 +6,36 @@
 
     // Build views: cover alone, then double spreads, back cover alone
     // Pages: [0] = cover, [1,2], [3,4], ... [29,30], [31] = back cover
+    let isMobile = false;
+    let currentView = 0;
+    let imagesLoaded = false;
+
+    onMount(() => {
+        // Detect mobile for single-page layout
+        const mq = window.matchMedia('(max-width: 639px)');
+        isMobile = mq.matches;
+        mq.addEventListener('change', (e) => { isMobile = e.matches; });
+
+        // Preload all images
+        const promises = bookPages.map((page) => {
+            return new Promise<void>((resolve) => {
+                const img = new window.Image();
+                img.onload = () => resolve();
+                img.onerror = () => resolve();
+                img.src = page;
+            });
+        });
+        Promise.all(promises).then(() => { imagesLoaded = true; });
+    });
+
     $: views = (() => {
         const v: string[][] = [];
         if (bookPages.length === 0) return v;
+        if (isMobile) {
+            // Single pages on mobile
+            for (const page of bookPages) v.push([page]);
+            return v;
+        }
         // Cover (page 1)
         v.push([bookPages[0]]);
         // Double spreads from page 2 onwards
@@ -23,27 +50,6 @@
         }
         return v;
     })();
-
-    let currentView = 0;
-    let imagesLoaded = false;
-
-    // Preload all images with proper loading
-    onMount(() => {
-        if (typeof window === "undefined") return;
-
-        const promises = bookPages.map((page) => {
-            return new Promise<void>((resolve) => {
-                const img = new window.Image();
-                img.onload = () => resolve();
-                img.onerror = () => resolve(); // Resolve even on error to not block
-                img.src = page;
-            });
-        });
-
-        Promise.all(promises).then(() => {
-            imagesLoaded = true;
-        });
-    });
 
     function next() {
         if (currentView < views.length - 1) currentView++;
@@ -63,6 +69,11 @@
 
     // Page number display
     $: pageLabel = (() => {
+        if (isMobile) {
+            if (currentView === 0) return "Cover";
+            if (currentView === bookPages.length - 1) return "Back Cover";
+            return `Page ${currentView + 1}`;
+        }
         if (currentView === 0) return "Cover";
         if (currentView === views.length - 1 && views[currentView].length === 1)
             return "Back Cover";
@@ -289,25 +300,36 @@
 
     .expanded .reader-viewport {
         max-width: 95vw;
-        max-height: 85vh;
+        max-height: 80vh;
         box-shadow: none;
         border-radius: 0;
         background: transparent;
+        width: 100%;
     }
 
     .expanded .reader-viewport.single {
-        max-width: 50vw;
+        max-width: min(50vw, calc(80vh * 0.72));
     }
 
     .expanded .reader-page {
-        max-height: 85vh;
-        width: auto;
+        max-height: 80vh;
+        width: 100%;
+        height: auto;
         object-fit: contain;
     }
 
-    .expanded .reader-viewport.single .reader-page {
-        width: auto;
-        max-height: 85vh;
+    @media (max-width: 639px) {
+        .expanded .reader-viewport {
+            max-height: 75vh;
+        }
+
+        .expanded .reader-viewport.single {
+            max-width: 95vw;
+        }
+
+        .expanded .reader-page {
+            max-height: 75vh;
+        }
     }
 
     .reader-page {

@@ -118,7 +118,10 @@ const lawyerActions = [
 
 <Layout>
 	<!-- Snow Effect -->
-	<canvas id="snow-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-[9999] opacity-60"></canvas>
+	<canvas
+		id="snow-canvas"
+		class="fixed inset-0 w-full h-full pointer-events-none z-[9999] opacity-60"
+	></canvas>
 
 	<!-- Header -->
 	<header
@@ -144,10 +147,21 @@ const lawyerActions = [
 	</header>
 
 	<!-- Hero Section -->
-	<section class="relative min-h-screen flex items-center justify-center overflow-hidden max-sm:min-h-0 max-sm:items-start">
-		<Image src={blueBg} alt="" class="absolute inset-0 w-full h-full object-cover z-0" loading="eager" />
-		<div class="relative z-10 text-center px-6 pt-24 pb-16 max-w-[600px] mx-auto max-sm:pt-32">
-			<div class="mb-12 min-h-32 md:min-h-36 flex items-start justify-center">
+	<section
+		class="relative min-h-screen flex items-center justify-center overflow-hidden max-sm:min-h-0 max-sm:items-start"
+	>
+		<Image
+			src={blueBg}
+			alt=""
+			class="absolute inset-0 w-full h-full object-cover z-0"
+			loading="eager"
+		/>
+		<div
+			class="relative z-10 text-center px-6 pt-24 pb-16 max-w-[600px] mx-auto max-sm:pt-32"
+		>
+			<div
+				class="mb-12 min-h-32 md:min-h-36 flex items-start justify-center"
+			>
 				<RotatingQuote client:load />
 			</div>
 
@@ -162,7 +176,9 @@ const lawyerActions = [
 			</div>
 
 			<div class="mb-10">
-				<p class="text-base md:text-lg leading-relaxed text-white/90 max-w-[420px] mx-auto">
+				<p
+					class="text-base md:text-lg leading-relaxed text-white/90 max-w-[420px] mx-auto"
+				>
 					On a chilly winter night, a little penguin dared to wonder:
 					if daddy loves me, why does his law firm facilitate fossil
 					fuel expansion?
@@ -170,8 +186,16 @@ const lawyerActions = [
 			</div>
 
 			<div class="flex gap-4 justify-center flex-wrap">
-				<a href="#read" class="inline-block px-8 py-[0.85rem] text-[1.05rem] font-[powell] rounded bg-white text-teal no-underline transition-all duration-200 hover:bg-offwhite">Read the Book</a>
-				<a href="#learn-more" class="inline-block px-8 py-[0.85rem] text-[1.05rem] font-[powell] rounded bg-transparent text-white border-2 border-white no-underline transition-all duration-200 hover:bg-white/15">Learn More</a>
+				<a
+					href="#read"
+					class="inline-block px-8 py-[0.85rem] text-[1.05rem] font-[powell] rounded bg-white text-teal no-underline transition-all duration-200 hover:bg-offwhite"
+					>Read the Book</a
+				>
+				<a
+					href="#learn-more"
+					class="inline-block px-8 py-[0.85rem] text-[1.05rem] font-[powell] rounded bg-transparent text-white border-2 border-white no-underline transition-all duration-200 hover:bg-white/15"
+					>Learn More</a
+				>
 			</div>
 		</div>
 	</section>
@@ -187,10 +211,20 @@ const lawyerActions = [
 
 	<!-- Did You Know Section -->
 	<section id="learn-more" class="relative overflow-hidden py-20 px-6">
-		<Image src={backInfo} alt="" class="absolute inset-0 w-full h-full object-cover z-0" />
+		<Image
+			src={backInfo}
+			alt=""
+			class="absolute inset-0 w-full h-full object-cover z-0"
+		/>
 		<div class="relative z-10 max-w-[960px] mx-auto">
-			<h2 class="text-5xl md:text-6xl font-normal mb-8 md:mb-10 text-grey text-center">Did you know?</h2>
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 md:items-start">
+			<h2
+				class="text-5xl md:text-6xl font-normal mb-8 md:mb-10 text-grey text-center"
+			>
+				Did you know?
+			</h2>
+			<div
+				class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 md:items-start"
+			>
 				<div class="text-center">
 					<p class="text-[1.05rem] leading-relaxed text-grey mb-4">
 						In 2025, the International Court of Justice ruled that
@@ -203,8 +237,14 @@ const lawyerActions = [
 						Between 2020 and 2024, London law firms facilitated
 					</p>
 					<div class="mt-1">
-						<p class="text-4xl md:text-[2.75rem] leading-[1.1] text-grey font-normal">$59.84 billion</p>
-						<p class="text-[0.95rem] text-grey mt-1">in fossil fuel transactions*</p>
+						<p
+							class="text-4xl md:text-[2.75rem] leading-[1.1] text-grey font-normal"
+						>
+							$59.84 billion
+						</p>
+						<p class="text-[0.95rem] text-grey mt-1">
+							in fossil fuel transactions*
+						</p>
 					</div>
 				</div>
 				<div class="text-center">
@@ -234,20 +274,39 @@ const lawyerActions = [
 
 	<!-- 7 Things Lawyers Can Do -->
 	<section class="relative overflow-hidden">
-		<Image src={blueBg} alt="" class="absolute inset-0 w-full h-full object-cover z-0" />
+		<Image
+			src={blueBg}
+			alt=""
+			class="absolute inset-0 w-full h-full object-cover z-0"
+		/>
 		<div class="relative z-10 max-w-[960px] mx-auto py-20 px-6 text-white">
 			<div class="flex items-start gap-4 mb-12">
-				<span class="text-[8rem] md:text-[10rem] leading-[0.75] text-white opacity-90 shrink-0">7</span>
-				<h2 class="text-5xl md:text-[3.5rem] leading-[1.05] font-normal m-0 pt-1">Things<br />Lawyers<br />Can Do...</h2>
+				<span
+					class="text-[8rem] md:text-[10rem] leading-[0.75] text-white opacity-90 shrink-0"
+					>7</span
+				>
+				<h2
+					class="text-5xl md:text-[3.5rem] leading-[1.05] font-normal m-0 pt-1"
+				>
+					Things<br />Lawyers<br />Can Do...
+				</h2>
 			</div>
 
-			<div class="grid grid-cols-1 sm:grid-cols-2 min-[900px]:grid-cols-3 gap-10 mb-16">
+			<div
+				class="grid grid-cols-1 sm:grid-cols-2 min-[900px]:grid-cols-3 gap-10 mb-16"
+			>
 				{
 					lawyerActions.map((action, index) => (
 						<div>
-							<span class="text-5xl leading-none block mb-1 opacity-70">{index + 1}</span>
-							<h3 class="text-[1.35rem] font-normal leading-[1.3] m-0 mb-2">{action.title}</h3>
-							<p class="text-[1.05rem] leading-[1.55] opacity-85 m-0">{action.description}</p>
+							<span class="text-5xl leading-none block mb-1 opacity-70">
+								{index + 1}
+							</span>
+							<h3 class="text-[1.35rem] font-normal leading-[1.3] m-0 mb-2">
+								{action.title}
+							</h3>
+							<p class="text-[1.05rem] leading-[1.55] opacity-85 m-0">
+								{action.description}
+							</p>
 						</div>
 					))
 				}
@@ -258,8 +317,12 @@ const lawyerActions = [
 	<!-- CTA Section -->
 	<section class="bg-offwhite py-20 px-6 text-center">
 		<div class="max-w-[520px] mx-auto">
-			<h2 class="text-[2.5rem] font-normal mb-2 text-teal">Limited Print Run</h2>
-			<p class="text-[1.2rem] text-grey mb-8">Order your free copy today.</p>
+			<h2 class="text-[2.5rem] font-normal mb-2 text-teal">
+				Limited Print Run
+			</h2>
+			<p class="text-[1.2rem] text-grey mb-8">
+				Order your free copy today.
+			</p>
 			<form action="https://submit-form.com/p6ynEPuSc" class="mb-8">
 				<div class="flex flex-col sm:flex-row gap-3 mb-4">
 					<input
@@ -285,7 +348,11 @@ const lawyerActions = [
 					placeholder="Message (optional)"
 					class="w-full px-4 py-[0.85rem] font-[powell] text-base border-2 border-blue rounded bg-white text-grey outline-none transition-colors duration-200 mb-4 min-h-[120px] resize-y placeholder:text-grey/50 focus:border-teal"
 				></textarea>
-				<button type="submit" class="inline-block px-10 py-[0.85rem] text-[1.05rem] font-[powell] rounded border-none bg-teal text-white cursor-pointer transition-colors duration-200 hover:bg-teal-dark">Request a Copy</button>
+				<button
+					type="submit"
+					class="inline-block px-10 py-[0.85rem] text-[1.05rem] font-[powell] rounded border-none bg-teal text-white cursor-pointer transition-colors duration-200 hover:bg-teal-dark"
+					>Request a Copy</button
+				>
 			</form>
 			<p class="text-base text-grey/70 italic m-0">
 				Please forward to the lawyer in your life.
@@ -300,7 +367,8 @@ const lawyerActions = [
 				href="https://seriouspeople.co"
 				target="_blank"
 				rel="noopener noreferrer"
-				class="text-teal underline underline-offset-2 hover:text-teal-dark">Serious People</a
+				class="text-teal underline underline-offset-2 hover:text-teal-dark"
+				>Serious People</a
 			>
 		</p>
 		<p class="my-1">
@@ -308,12 +376,12 @@ const lawyerActions = [
 				href="https://ellenmcgahey.com"
 				target="_blank"
 				rel="noopener noreferrer"
-				class="text-teal underline underline-offset-2 hover:text-teal-dark">Ellen McGahey</a
+				class="text-teal underline underline-offset-2 hover:text-teal-dark"
+				>Ellen McGahey</a
 			>
 		</p>
 	</footer>
 </Layout>
-
 
 <script>
 	// Cute snow effect
