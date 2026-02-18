@@ -3,19 +3,18 @@
 
     export let bookPages: string[] = [];
     export let pdfUrl: string = "";
+    // Set to true to hide publishing/copyright pages (pages 02–05, indices 1–4)
+    export let skipPublishingPages: boolean = true;
 
-    // Build views: cover alone, then double spreads, back cover alone
-    // Pages: [0] = cover, [1,2], [3,4], ... [29,30], [31] = back cover
-    let isMobile = false;
+    // Filter pages if needed
+    $: filteredPages = skipPublishingPages
+        ? [bookPages[0], ...bookPages.slice(5)]
+        : bookPages;
+
     let currentView = 0;
     let imagesLoaded = false;
 
     onMount(() => {
-        // Detect mobile for single-page layout
-        const mq = window.matchMedia('(max-width: 639px)');
-        isMobile = mq.matches;
-        mq.addEventListener('change', (e) => { isMobile = e.matches; });
-
         // Preload all images
         const promises = bookPages.map((page) => {
             return new Promise<void>((resolve) => {
@@ -25,28 +24,26 @@
                 img.src = page;
             });
         });
-        Promise.all(promises).then(() => { imagesLoaded = true; });
+        Promise.all(promises).then(() => {
+            imagesLoaded = true;
+        });
     });
 
+    // Build views: cover alone, then double spreads, back cover alone
     $: views = (() => {
         const v: string[][] = [];
-        if (bookPages.length === 0) return v;
-        if (isMobile) {
-            // Single pages on mobile
-            for (const page of bookPages) v.push([page]);
-            return v;
-        }
-        // Cover (page 1)
-        v.push([bookPages[0]]);
-        // Double spreads from page 2 onwards
-        for (let i = 1; i < bookPages.length - 1; i += 2) {
-            const spread = [bookPages[i]];
-            if (i + 1 < bookPages.length) spread.push(bookPages[i + 1]);
+        if (filteredPages.length === 0) return v;
+        // Cover
+        v.push([filteredPages[0]]);
+        // Double spreads
+        for (let i = 1; i < filteredPages.length - 1; i += 2) {
+            const spread = [filteredPages[i]];
+            if (i + 1 < filteredPages.length) spread.push(filteredPages[i + 1]);
             v.push(spread);
         }
-        // Back cover if the last page wasn't already included in a spread
-        if (bookPages.length > 1 && bookPages.length % 2 === 0) {
-            v.push([bookPages[bookPages.length - 1]]);
+        // Back cover if last page wasn't included in a spread
+        if (filteredPages.length > 1 && filteredPages.length % 2 === 0) {
+            v.push([filteredPages[filteredPages.length - 1]]);
         }
         return v;
     })();
@@ -69,11 +66,6 @@
 
     // Page number display
     $: pageLabel = (() => {
-        if (isMobile) {
-            if (currentView === 0) return "Cover";
-            if (currentView === bookPages.length - 1) return "Back Cover";
-            return `Page ${currentView + 1}`;
-        }
         if (currentView === 0) return "Cover";
         if (currentView === views.length - 1 && views[currentView].length === 1)
             return "Back Cover";
@@ -140,6 +132,12 @@
                 />
             {/each}
         </div>
+        {#if !isSinglePage && !isExpanded}
+            <p class="rotate-hint">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                Rotate for a better view
+            </p>
+        {/if}
     {/if}
 
     {#if imagesLoaded}
@@ -280,9 +278,8 @@
     }
 
     .reader-viewport {
-        display: flex;
-        justify-content: center;
-        align-items: stretch;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: 0;
         margin-bottom: 2rem;
         border-radius: 4px;
@@ -295,27 +292,29 @@
     }
 
     .reader-viewport.single {
+        grid-template-columns: 1fr;
         max-width: 600px;
     }
 
     .expanded .reader-viewport {
-        max-width: 95vw;
+        /* Constrain by height so both grid cells shrink together */
         max-height: 80vh;
+        width: auto;
+        max-width: 95vw;
         box-shadow: none;
         border-radius: 0;
         background: transparent;
-        width: 100%;
     }
 
     .expanded .reader-viewport.single {
-        max-width: min(50vw, calc(80vh * 0.72));
+        max-width: calc(80vh * 1.02);
     }
 
     .expanded .reader-page {
-        max-height: 80vh;
+        display: block;
         width: 100%;
-        height: auto;
-        object-fit: contain;
+        height: 100%;
+        object-fit: cover;
     }
 
     @media (max-width: 639px) {
@@ -324,23 +323,38 @@
         }
 
         .expanded .reader-viewport.single {
-            max-width: 95vw;
-        }
-
-        .expanded .reader-page {
-            max-height: 75vh;
+            max-width: calc(75vh * 1.02);
         }
     }
 
     .reader-page {
         display: block;
-        width: 50%;
+        width: 100%;
         height: auto;
         object-fit: cover;
+        vertical-align: top;
     }
 
     .reader-viewport.single .reader-page {
         width: 100%;
+    }
+
+    .rotate-hint {
+        display: none;
+        text-align: center;
+        font-size: 0.8rem;
+        color: #656d70;
+        opacity: 0.6;
+        margin: -0.75rem 0 1.25rem;
+        gap: 0.4rem;
+        align-items: center;
+        justify-content: center;
+    }
+
+    @media (max-width: 639px) and (orientation: portrait) {
+        .rotate-hint {
+            display: flex;
+        }
     }
 
     .reader-controls {
