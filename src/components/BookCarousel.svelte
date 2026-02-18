@@ -13,8 +13,16 @@
 
     let currentView = 0;
     let imagesLoaded = false;
+    let isMobile = false;
 
     onMount(() => {
+        // Detect mobile for single-page layout
+        const mq = window.matchMedia("(max-width: 639px)");
+        isMobile = mq.matches;
+        mq.addEventListener("change", (e) => {
+            isMobile = e.matches;
+        });
+
         // Preload all images
         const promises = bookPages.map((page) => {
             return new Promise<void>((resolve) => {
@@ -29,10 +37,14 @@
         });
     });
 
-    // Build views: cover alone, then double spreads, back cover alone
+    // Build views: single pages on mobile, double spreads on desktop
     $: views = (() => {
         const v: string[][] = [];
         if (filteredPages.length === 0) return v;
+        if (isMobile) {
+            for (const page of filteredPages) v.push([page]);
+            return v;
+        }
         // Cover
         v.push([filteredPages[0]]);
         // Double spreads
@@ -66,6 +78,11 @@
 
     // Page number display
     $: pageLabel = (() => {
+        if (isMobile) {
+            if (currentView === 0) return "Cover";
+            if (currentView === filteredPages.length - 1) return "Back Cover";
+            return `Page ${currentView + 1}`;
+        }
         if (currentView === 0) return "Cover";
         if (currentView === views.length - 1 && views[currentView].length === 1)
             return "Back Cover";
@@ -132,9 +149,21 @@
                 />
             {/each}
         </div>
-        {#if !isSinglePage && !isExpanded}
+        {#if isMobile && !isExpanded}
             <p class="rotate-hint">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><path d="M23 4v6h-6" /><path d="M1 20v-6h6" /><path
+                        d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"
+                    /></svg
+                >
                 Rotate for a better view
             </p>
         {/if}
@@ -314,7 +343,7 @@
         display: block;
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
     }
 
     @media (max-width: 639px) {
@@ -340,21 +369,15 @@
     }
 
     .rotate-hint {
-        display: none;
         text-align: center;
-        font-size: 0.8rem;
+        font-size: 1.1rem;
         color: #656d70;
         opacity: 0.6;
         margin: -0.75rem 0 1.25rem;
+        display: flex;
         gap: 0.4rem;
         align-items: center;
         justify-content: center;
-    }
-
-    @media (max-width: 639px) and (orientation: portrait) {
-        .rotate-hint {
-            display: flex;
-        }
     }
 
     .reader-controls {
