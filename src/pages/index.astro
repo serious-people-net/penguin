@@ -118,7 +118,7 @@ const lawyerActions = [
 
 <Layout>
 	<!-- Snow Effect -->
-	<canvas id="snow-canvas" class="snow-canvas"></canvas>
+	<canvas id="snow-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-[9999] opacity-60"></canvas>
 
 	<!-- Header -->
 	<header
@@ -137,47 +137,47 @@ const lawyerActions = [
 					width={80}
 					height={80}
 					quality="high"
-					class="sp-logo"
+					class="w-10 h-10"
 				/>
 			</a>
 		</div>
 	</header>
 
 	<!-- Hero Section -->
-	<section class="hero">
-		<Image src={blueBg} alt="" class="hero-bg" loading="eager" />
-		<div class="hero-content">
-			<div class="hero-quote">
+	<section class="relative min-h-screen flex items-center justify-center overflow-hidden max-sm:min-h-0 max-sm:items-start">
+		<Image src={blueBg} alt="" class="absolute inset-0 w-full h-full object-cover z-0" loading="eager" />
+		<div class="relative z-10 text-center px-6 pt-24 pb-16 max-w-[600px] mx-auto max-sm:pt-32">
+			<div class="mb-12 min-h-32 md:min-h-36 flex items-start justify-center">
 				<RotatingQuote client:load />
 			</div>
 
-			<div class="hero-cover">
+			<div class="mx-auto mb-8 max-w-[320px] md:max-w-[380px]">
 				<Image
 					src={bookCover}
 					alt="Why Daddy's Law Firm Works with the Nice Oil Men"
-					class="hero-cover-img"
+					class="w-full h-auto rounded-[6px] shadow-[0_16px_48px_rgba(0,0,0,0.2)]"
 					loading="eager"
 					quality="high"
 				/>
 			</div>
 
-			<div class="hero-text">
-				<p class="hero-blurb">
+			<div class="mb-10">
+				<p class="text-base md:text-lg leading-relaxed text-white/90 max-w-[420px] mx-auto">
 					On a chilly winter night, a little penguin dared to wonder:
 					if daddy loves me, why does his law firm facilitate fossil
 					fuel expansion?
 				</p>
 			</div>
 
-			<div class="hero-actions">
-				<a href="#read" class="btn btn-primary">Read the Book</a>
-				<a href="#learn-more" class="btn btn-secondary">Learn More</a>
+			<div class="flex gap-4 justify-center flex-wrap">
+				<a href="#read" class="inline-block px-8 py-[0.85rem] text-[1.05rem] font-[powell] rounded bg-white text-teal no-underline transition-all duration-200 hover:bg-offwhite">Read the Book</a>
+				<a href="#learn-more" class="inline-block px-8 py-[0.85rem] text-[1.05rem] font-[powell] rounded bg-transparent text-white border-2 border-white no-underline transition-all duration-200 hover:bg-white/15">Learn More</a>
 			</div>
 		</div>
 	</section>
 
 	<!-- Book Reader Section -->
-	<section id="read" class="section-reader">
+	<section id="read" class="bg-offwhite py-16">
 		<BookCarousel
 			bookPages={bookPages}
 			pdfUrl="/penguin/why-daddys-law-firm-works-with-the-nice-oil-men-ebook.pdf"
@@ -186,46 +186,46 @@ const lawyerActions = [
 	</section>
 
 	<!-- Did You Know Section -->
-	<section id="learn-more" class="section-did-you-know">
-		<Image src={backInfo} alt="" class="section-did-you-know-bg" />
-		<div class="did-you-know-content">
-			<h2 class="did-you-know-title">Did you know?</h2>
-			<div class="did-you-know-columns">
-				<div class="did-you-know-col">
-					<p class="fact-intro">
+	<section id="learn-more" class="relative overflow-hidden py-20 px-6">
+		<Image src={backInfo} alt="" class="absolute inset-0 w-full h-full object-cover z-0" />
+		<div class="relative z-10 max-w-[960px] mx-auto">
+			<h2 class="text-5xl md:text-6xl font-normal mb-8 md:mb-10 text-grey text-center">Did you know?</h2>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 md:items-start">
+				<div class="text-center">
+					<p class="text-[1.05rem] leading-relaxed text-grey mb-4">
 						In 2025, the International Court of Justice ruled that
 						countries have a legal duty to protect the climate and
 						prevent harm to future generations, including fossil
 						fuel expansion. This includes regulating the private
 						sector.
 					</p>
-					<p class="fact-intro">
+					<p class="text-[1.05rem] leading-relaxed text-grey mb-4">
 						Between 2020 and 2024, London law firms facilitated
 					</p>
-					<div class="fact-stat-block">
-						<p class="fact-big-number">$59.84 billion</p>
-						<p class="fact-caption">in fossil fuel transactions*</p>
+					<div class="mt-1">
+						<p class="text-4xl md:text-[2.75rem] leading-[1.1] text-grey font-normal">$59.84 billion</p>
+						<p class="text-[0.95rem] text-grey mt-1">in fossil fuel transactions*</p>
 					</div>
 				</div>
-				<div class="did-you-know-col">
-					<p class="fact-intro">
+				<div class="text-center">
+					<p class="text-[1.05rem] leading-relaxed text-grey mb-4">
 						The world already has enough approved fossil fuel
 						projects to push past 1.5°C of warming. Each 0.1°C
 						beyond that increases:
 					</p>
-					<p class="fact-emphasis">
+					<p class="text-[1.2rem] leading-[1.55] text-grey my-4">
 						Deadly heat waves and crop failures.<br />
 						Mass displacement and climate refugees.<br />
 						Wildfires, flooding and storms.
 					</p>
-					<p class="fact-subtext">
+					<p class="text-base leading-[1.5] text-grey mt-3">
 						The communities that contributed least to emissions will
 						be hit first and hardest. Including penguins, who didn't
 						emit anything at all.
 					</p>
 				</div>
 			</div>
-			<p class="did-you-know-source">
+			<p class="text-xs opacity-50 mt-10 text-grey text-center">
 				*Source: The 2025 Law Firm Climate Change Scorecard by Law
 				Students for Climate Accountability (LSCA)
 			</p>
@@ -233,21 +233,21 @@ const lawyerActions = [
 	</section>
 
 	<!-- 7 Things Lawyers Can Do -->
-	<section class="section-seven">
-		<Image src={blueBg} alt="" class="section-seven-bg" />
-		<div class="section-seven-content">
-			<div class="seven-header">
-				<span class="seven-number">7</span>
-				<h2 class="seven-title">Things<br />Lawyers<br />Can Do...</h2>
+	<section class="relative overflow-hidden">
+		<Image src={blueBg} alt="" class="absolute inset-0 w-full h-full object-cover z-0" />
+		<div class="relative z-10 max-w-[960px] mx-auto py-20 px-6 text-white">
+			<div class="flex items-start gap-4 mb-12">
+				<span class="text-[8rem] md:text-[10rem] leading-[0.75] text-white opacity-90 shrink-0">7</span>
+				<h2 class="text-5xl md:text-[3.5rem] leading-[1.05] font-normal m-0 pt-1">Things<br />Lawyers<br />Can Do...</h2>
 			</div>
 
-			<div class="seven-grid">
+			<div class="grid grid-cols-1 sm:grid-cols-2 min-[900px]:grid-cols-3 gap-10 mb-16">
 				{
 					lawyerActions.map((action, index) => (
-						<div class="seven-item">
-							<span class="seven-item-number">{index + 1}</span>
-							<h3 class="seven-item-title">{action.title}</h3>
-							<p class="seven-item-desc">{action.description}</p>
+						<div>
+							<span class="text-5xl leading-none block mb-1 opacity-70">{index + 1}</span>
+							<h3 class="text-[1.35rem] font-normal leading-[1.3] m-0 mb-2">{action.title}</h3>
+							<p class="text-[1.05rem] leading-[1.55] opacity-85 m-0">{action.description}</p>
 						</div>
 					))
 				}
@@ -256,19 +256,19 @@ const lawyerActions = [
 	</section>
 
 	<!-- CTA Section -->
-	<section class="section-cta">
-		<div class="cta-content">
-			<h2 class="cta-title">Limited Print Run</h2>
-			<p class="cta-subtitle">Order your free copy today.</p>
-			<form action="https://submit-form.com/p6ynEPuSc" class="cta-form">
-				<div class="cta-form-fields">
+	<section class="bg-offwhite py-20 px-6 text-center">
+		<div class="max-w-[520px] mx-auto">
+			<h2 class="text-[2.5rem] font-normal mb-2 text-teal">Limited Print Run</h2>
+			<p class="text-[1.2rem] text-grey mb-8">Order your free copy today.</p>
+			<form action="https://submit-form.com/p6ynEPuSc" class="mb-8">
+				<div class="flex flex-col sm:flex-row gap-3 mb-4">
 					<input
 						type="text"
 						id="name"
 						name="name"
 						placeholder="Your name"
 						required
-						class="cta-input"
+						class="flex-1 px-4 py-[0.85rem] font-[powell] text-base border-2 border-blue rounded bg-white text-grey outline-none transition-colors duration-200 placeholder:text-grey/50 focus:border-teal"
 					/>
 					<input
 						type="email"
@@ -276,538 +276,44 @@ const lawyerActions = [
 						name="email"
 						placeholder="Your email"
 						required
-						class="cta-input"
+						class="flex-1 px-4 py-[0.85rem] font-[powell] text-base border-2 border-blue rounded bg-white text-grey outline-none transition-colors duration-200 placeholder:text-grey/50 focus:border-teal"
 					/>
 				</div>
 				<textarea
 					id="message"
 					name="message"
 					placeholder="Message (optional)"
-					class="cta-textarea"
+					class="w-full px-4 py-[0.85rem] font-[powell] text-base border-2 border-blue rounded bg-white text-grey outline-none transition-colors duration-200 mb-4 min-h-[120px] resize-y placeholder:text-grey/50 focus:border-teal"
 				></textarea>
-				<button type="submit" class="btn-cta">Request a Copy</button>
+				<button type="submit" class="inline-block px-10 py-[0.85rem] text-[1.05rem] font-[powell] rounded border-none bg-teal text-white cursor-pointer transition-colors duration-200 hover:bg-teal-dark">Request a Copy</button>
 			</form>
-			<p class="cta-forward">
+			<p class="text-base text-grey/70 italic m-0">
 				Please forward to the lawyer in your life.
 			</p>
 		</div>
 	</section>
 
 	<!-- Footer -->
-	<footer class="site-footer">
-		<p>
+	<footer class="bg-offwhite py-10 px-6 text-center text-grey text-[0.95rem]">
+		<p class="my-1">
 			Made by <a
 				href="https://seriouspeople.co"
 				target="_blank"
-				rel="noopener noreferrer">Serious People</a
+				rel="noopener noreferrer"
+				class="text-teal underline underline-offset-2 hover:text-teal-dark">Serious People</a
 			>
 		</p>
-		<p>
+		<p class="my-1">
 			Illustration by <a
 				href="https://ellenmcgahey.com"
 				target="_blank"
-				rel="noopener noreferrer">Ellen McGahey</a
+				rel="noopener noreferrer"
+				class="text-teal underline underline-offset-2 hover:text-teal-dark">Ellen McGahey</a
 			>
 		</p>
 	</footer>
 </Layout>
 
-<style>
-	/* ---- Snow Effect ---- */
-	.snow-canvas {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		pointer-events: none;
-		z-index: 9999;
-		opacity: 0.6;
-	}
-
-	/* ---- Header ---- */
-	.sp-logo {
-		width: 40px;
-		height: 40px;
-	}
-
-	/* ---- Hero ---- */
-	.hero {
-		position: relative;
-		min-height: 100vh;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		overflow: hidden;
-	}
-
-	@media (max-width: 640px) {
-		.hero {
-			min-height: auto;
-			align-items: flex-start;
-		}
-
-		.hero-content {
-			padding-top: 8rem;
-		}
-	}
-
-	.hero-bg {
-		position: absolute;
-		inset: 0;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		z-index: 0;
-	}
-
-	.hero-content {
-		position: relative;
-		z-index: 1;
-		text-align: center;
-		padding: 6rem 1.5rem 4rem;
-		max-width: 600px;
-		margin: 0 auto;
-	}
-
-	.hero-quote {
-		margin-bottom: 3rem;
-		min-height: 8rem;
-		display: flex;
-		align-items: flex-start;
-		justify-content: center;
-	}
-
-	@media (min-width: 768px) {
-		.hero-quote {
-			min-height: 9rem;
-		}
-	}
-
-	.hero-cover {
-		margin: 0 auto 2rem;
-		max-width: 320px;
-	}
-
-	.hero-cover-img {
-		width: 100%;
-		height: auto;
-		border-radius: 6px;
-		box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
-	}
-
-	.hero-text {
-		margin-bottom: 2.5rem;
-	}
-
-	.hero-blurb {
-		font-size: 1rem;
-		line-height: 1.6;
-		color: rgba(255, 255, 255, 0.9);
-		max-width: 420px;
-		margin: 0 auto;
-	}
-
-	.hero-actions {
-		display: flex;
-		gap: 1rem;
-		justify-content: center;
-		flex-wrap: wrap;
-	}
-
-	/* ---- Buttons ---- */
-	.btn {
-		display: inline-block;
-		padding: 0.85rem 2rem;
-		font-size: 1.05rem;
-		font-family: "powell", sans-serif;
-		border-radius: 4px;
-		text-decoration: none;
-		transition: all 0.2s ease;
-	}
-
-	.btn-primary {
-		background: white;
-		color: #237f8d;
-	}
-
-	.btn-primary:hover {
-		background: #ede9e8;
-	}
-
-	.btn-secondary {
-		background: transparent;
-		color: white;
-		border: 2px solid white;
-	}
-
-	.btn-secondary:hover {
-		background: rgba(255, 255, 255, 0.15);
-	}
-
-	/* ---- Reader Section ---- */
-	.section-reader {
-		background: #ede9e8;
-		padding: 4rem 0;
-	}
-
-	/* ---- 7 Things Section ---- */
-	.section-seven {
-		position: relative;
-		overflow: hidden;
-	}
-
-	.section-seven-bg {
-		position: absolute;
-		inset: 0;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		z-index: 0;
-	}
-
-	.section-seven-content {
-		position: relative;
-		z-index: 1;
-		max-width: 960px;
-		margin: 0 auto;
-		padding: 5rem 1.5rem;
-		color: white;
-	}
-
-	.seven-header {
-		display: flex;
-		align-items: flex-start;
-		gap: 1rem;
-		margin-bottom: 3rem;
-	}
-
-	.seven-number {
-		font-size: 8rem;
-		line-height: 0.75;
-		color: white;
-		opacity: 0.9;
-		flex-shrink: 0;
-	}
-
-	.seven-title {
-		font-size: 3rem;
-		line-height: 1.05;
-		font-weight: 400;
-		margin: 0;
-		padding-top: 0.25rem;
-	}
-
-	.seven-grid {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 2.5rem;
-		margin-bottom: 4rem;
-	}
-
-	@media (min-width: 640px) {
-		.seven-grid {
-			grid-template-columns: repeat(2, 1fr);
-		}
-	}
-
-	@media (min-width: 900px) {
-		.seven-grid {
-			grid-template-columns: repeat(3, 1fr);
-		}
-	}
-
-	.seven-item {
-		/* No animations */
-	}
-
-	.seven-item-number {
-		font-size: 3rem;
-		line-height: 1;
-		display: block;
-		margin-bottom: 0.25rem;
-		opacity: 0.7;
-	}
-
-	.seven-item-title {
-		font-size: 1.35rem;
-		font-weight: 400;
-		line-height: 1.3;
-		margin: 0 0 0.5rem;
-	}
-
-	.seven-item-desc {
-		font-size: 1.05rem;
-		line-height: 1.55;
-		opacity: 0.85;
-		margin: 0;
-	}
-
-	/* ---- Did You Know Section ---- */
-	.section-did-you-know {
-		position: relative;
-		overflow: hidden;
-		padding: 5rem 1.5rem;
-	}
-
-	.section-did-you-know-bg {
-		position: absolute;
-		inset: 0;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		z-index: 0;
-	}
-
-	.did-you-know-content {
-		position: relative;
-		z-index: 1;
-		max-width: 960px;
-		margin: 0 auto;
-	}
-
-	.did-you-know-title {
-		font-size: 3rem;
-		font-weight: 400;
-		margin: 0 0 2rem;
-		color: var(--color-grey);
-		text-align: center;
-	}
-
-	@media (min-width: 768px) {
-		.did-you-know-title {
-			font-size: 3.75rem;
-			margin-bottom: 2.5rem;
-		}
-	}
-
-	.did-you-know-columns {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 1.5rem;
-	}
-
-	@media (min-width: 768px) {
-		.did-you-know-columns {
-			grid-template-columns: 1fr 1fr;
-			gap: 3rem;
-			align-items: start;
-		}
-	}
-
-	.did-you-know-col {
-		text-align: center;
-	}
-
-	.fact-stat-block {
-		margin: 0.25rem 0 0;
-	}
-
-	.fact-intro {
-		font-size: 1.05rem;
-		line-height: 1.6;
-		color: var(--color-grey);
-		margin: 0 0 1rem;
-	}
-
-	.fact-big-number {
-		font-size: 2.25rem;
-		line-height: 1.1;
-		color: var(--color-grey);
-		margin: 0;
-		font-weight: 400;
-	}
-
-	@media (min-width: 768px) {
-		.fact-big-number {
-			font-size: 2.75rem;
-		}
-	}
-
-	.fact-caption {
-		font-size: 0.95rem;
-		color: var(--color-grey);
-		margin: 0.25rem 0 0;
-	}
-
-	.fact-emphasis {
-		font-size: 1.2rem;
-		line-height: 1.55;
-		color: var(--color-grey);
-		margin: 1rem 0;
-	}
-
-	.fact-subtext {
-		font-size: 1rem;
-		line-height: 1.5;
-		color: var(--color-grey);
-		margin: 0.75rem 0 0;
-	}
-
-	.did-you-know-source {
-		font-size: 0.75rem;
-		opacity: 0.5;
-		margin-top: 2.5rem;
-		color: var(--color-grey);
-		text-align: center;
-	}
-
-	/* ---- CTA Section ---- */
-	.section-cta {
-		background: #ede9e8;
-		padding: 5rem 1.5rem;
-		text-align: center;
-	}
-
-	.cta-content {
-		max-width: 520px;
-		margin: 0 auto;
-	}
-
-	.cta-title {
-		font-size: 2.5rem;
-		font-weight: 400;
-		margin: 0 0 0.5rem;
-		color: #237f8d;
-	}
-
-	.cta-subtitle {
-		font-size: 1.2rem;
-		color: #656d70;
-		margin: 0 0 2rem;
-	}
-
-	.cta-form {
-		margin-bottom: 2rem;
-	}
-
-	.cta-form-fields {
-		display: flex;
-		flex-direction: column;
-		gap: 0.75rem;
-		margin-bottom: 1rem;
-	}
-
-	@media (min-width: 480px) {
-		.cta-form-fields {
-			flex-direction: row;
-		}
-	}
-
-	.cta-input {
-		flex: 1;
-		padding: 0.85rem 1rem;
-		font-family: "powell", sans-serif;
-		font-size: 1rem;
-		border: 2px solid #8ed3e6;
-		border-radius: 4px;
-		background: white;
-		color: #656d70;
-		outline: none;
-		transition: border-color 0.2s ease;
-	}
-
-	.cta-input:focus {
-		border-color: #237f8d;
-	}
-
-	.cta-input::placeholder {
-		color: #656d70;
-		opacity: 0.5;
-	}
-
-	.cta-textarea {
-		width: 100%;
-		padding: 0.85rem 1rem;
-		font-family: "powell", sans-serif;
-		font-size: 1rem;
-		border: 2px solid #8ed3e6;
-		border-radius: 4px;
-		background: white;
-		color: #656d70;
-		outline: none;
-		transition: border-color 0.2s ease;
-		margin-bottom: 1rem;
-		min-height: 120px;
-		resize: vertical;
-	}
-
-	.cta-textarea:focus {
-		border-color: #237f8d;
-	}
-
-	.cta-textarea::placeholder {
-		color: #656d70;
-		opacity: 0.5;
-	}
-
-	.btn-cta {
-		display: inline-block;
-		padding: 0.85rem 2.5rem;
-		font-size: 1.05rem;
-		font-family: "powell", sans-serif;
-		border-radius: 4px;
-		border: none;
-		background: #237f8d;
-		color: white;
-		cursor: pointer;
-		transition: background 0.2s ease;
-	}
-
-	.btn-cta:hover {
-		background: #1a6070;
-	}
-
-	.cta-forward {
-		font-size: 1rem;
-		color: #656d70;
-		opacity: 0.7;
-		font-style: italic;
-		margin: 0;
-	}
-
-	/* ---- Footer ---- */
-	.site-footer {
-		background: #ede9e8;
-		padding: 2.5rem 1.5rem;
-		text-align: center;
-		color: #656d70;
-		font-size: 0.95rem;
-	}
-
-	.site-footer p {
-		margin: 0.25rem 0;
-	}
-
-	.site-footer a {
-		color: #237f8d;
-		text-decoration: underline;
-		text-underline-offset: 2px;
-	}
-
-	.site-footer a:hover {
-		color: #1a6070;
-	}
-
-	/* ---- Responsive ---- */
-	@media (min-width: 768px) {
-		.hero-cover {
-			max-width: 380px;
-		}
-
-		.hero-blurb {
-			font-size: 1.15rem;
-		}
-
-		.seven-number {
-			font-size: 10rem;
-		}
-
-		.seven-title {
-			font-size: 3.5rem;
-		}
-	}
-</style>
 
 <script>
 	// Cute snow effect
