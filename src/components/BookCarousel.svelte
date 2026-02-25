@@ -407,6 +407,7 @@
         color: #237f8d;
         cursor: pointer;
         transition: all 0.2s ease;
+        flex-shrink: 0;
     }
 
     button:hover:not(:disabled) {

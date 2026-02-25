@@ -125,7 +125,7 @@ const lawyerActions = [
 
 	<!-- Header -->
 	<header
-		class="fixed top-0 left-0 right-0 z-50 transition-colors duration-300"
+		class="hidden md:block md:fixed md:top-0 md:left-0 md:right-0 z-50 transition-colors duration-300"
 		id="site-header"
 	>
 		<div class="max-w-6xl mx-auto px-6 py-5 flex items-center">
@@ -157,7 +157,7 @@ const lawyerActions = [
 			loading="eager"
 		/>
 		<div
-			class="relative z-10 text-center px-6 pt-24 pb-16 max-w-[600px] mx-auto max-sm:pt-32"
+			class="relative z-10 text-center px-6 pt-24 pb-16 max-w-[600px] mx-auto max-sm:pt-8"
 		>
 			<div
 				class="mb-12 min-h-32 md:min-h-36 flex items-start justify-center"
@@ -180,8 +180,7 @@ const lawyerActions = [
 					class="text-base md:text-lg leading-relaxed text-white/90 max-w-[420px] mx-auto"
 				>
 					On a chilly winter night, a little penguin dared to wonder:
-					if daddy loves me, why does his law firm facilitate fossil
-					fuel expansion?
+					if daddy loves me, why does his law firm facilitate <span class="whitespace-nowrap">fossil fuel</span> expansion?
 				</p>
 			</div>
 
@@ -321,7 +320,7 @@ const lawyerActions = [
 				Limited Print Run
 			</h2>
 			<p class="text-[1.2rem] text-grey mb-8">
-				Order your free copy today.
+				Order your <span class="whitespace-nowrap">free copy</span> today.
 			</p>
 			<form action="https://submit-form.com/p6ynEPuSc" class="mb-8">
 				<div class="flex flex-col sm:flex-row gap-3 mb-4">
@@ -376,7 +375,7 @@ const lawyerActions = [
 				href="https://ellenmcgahey.com"
 				target="_blank"
 				rel="noopener noreferrer"
-				class="text-teal underline underline-offset-2 hover:text-teal-dark"
+				class="text-teal underline underline-offset-2 hover:text-teal-dark whitespace-nowrap"
 				>Ellen McGahey</a
 			>
 		</p>
