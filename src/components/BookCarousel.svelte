@@ -4,7 +4,7 @@
     export let bookPages: string[] = [];
     export let pdfUrl: string = "";
     // Set to true to hide publishing/copyright pages (pages 02–05, indices 1–4)
-    export let skipPublishingPages: boolean = true;
+    export let skipPublishingPages: boolean = false;
 
     // Filter pages if needed
     $: filteredPages = skipPublishingPages
